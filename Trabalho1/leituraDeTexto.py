@@ -1,5 +1,5 @@
 
-nomeArquivo = "texto"
+nomeArquivo = "test"
 directory = "C:\\Users\\Igori\\Documents\\Projects\\MatDiscreta\\Trabalho1\\"+nomeArquivo+".txt"
 
 arquivo = open(directory)
@@ -20,25 +20,22 @@ for conjunto in textoArquivo:
 nomeConjunto = {"A","B","C","D","E","F","I","G","H","I","J","K","L","M","N","O",
                 "P","Q","R","S","T","U","V","W","X","Y","Z"}
 
-simbolos = {"=","{","}",",","\n","_"}
+simbolos = {"=","{","}",",","\n","_", " "}
 simboloSinal = {"-","+"}
 print("\n\n",nomeConjunto)
 teste = {textoArquivo}
 print("\n\n",teste)
 
-'''
-def PercorreNomeConjunto(nomeConjunto):
-    for letraMaiuscula in nomeConjunto:
-       return letraMaiuscula
-'''
 
 
 conjuntos = []
+#def Menu()
+
 def PercorreConjunto(textoArquivo):
    # a=""
     conjuntoAux = []
     for conjunto in textoArquivo:
-        letraConjunto =nomeConjunto.intersection(conjunto)
+        letraConjunto = nomeConjunto.intersection(conjunto)
         if not nomeConjunto.intersection(conjunto):
            if conjunto == "}":
                 print("Número de elementos do conjunto",conjuntoAux, "é:" ,conjuntos.__len__())
@@ -59,23 +56,39 @@ def PercorreConjunto(textoArquivo):
               conjuntoAux.append(letraConjunto)
               
 
-
-PercorreConjunto(textoArquivo)
+def Pertence(numero, conjunto):
+    if conjunto.__contains__(numero):
+        print("O número",numero,"pertence ao conjunto",conjunto)
         
-print("\n\nConjuntos:",conjuntos)
-print("\n\nLista de conjuntos:",listaDeConjuntos,"\n\n\n")
+    else:
+        print("O número",numero,"não pertence ao conjunto",conjunto)
+
+def ContidoOuIgual(conjuntoComparativo,conjuntoBase):
+    if conjuntoBase == conjuntoComparativo:
+        print("O conjunto comparativo é igual ao conjunto base.")
+    elif set(conjuntoComparativo).issubset(set(conjuntoBase)):
+        print("O conjunto comparativo está contido no conjunto base.")
+
+def ContidoPropriamente(conjuntoComparativo,conjuntoBase):
+    if set(conjuntoComparativo).issubset(set(conjuntoBase)):
+        print("O conjunto comparativo está contido propriamente no conjunto base.")
+
+def Uniao(conjuntoComparativo,conjuntoBase):
+    print()
+
+
+def Intersecao(conjuntoComparativo,conjuntoBase):
+    intersecao = []
+    for elementoComparativo in conjuntoComparativo:
+        for elementoBase in conjuntoBase:
+            if elementoComparativo.__contains__(elementoBase) and not simbolos.intersection(elementoComparativo) and not nomeConjunto.intersection(elementoComparativo):
+                intersecao.append(elementoComparativo)
+    print(intersecao)  
+
 
 
 '''        
-def Pertence():
-    
-def ContidoOuIgual():
-    
-def ContidoPropriamente():
 
-def Uniao():
-
-def Intersecao():
 
 def ProdutoCartesiano():
 
@@ -84,5 +97,32 @@ def ConjuntoDasPartes():
 def DiferençaDeConjuntos():
 
 '''
+
+'''
+def PercorreNomeConjunto(nomeConjunto):
+    for letraMaiuscula in nomeConjunto:
+           return letraMaiuscula
+'''
+
+PercorreConjunto(textoArquivo)
+
+Pertence("1", textoArquivo)
+
+Pertence("2", textoArquivo)
+
+conjuntoComparativo = "A = {1,87,4,-1,43}"
+conjuntoComparativo2 = "{1,87,4,-1,43}"
+ContidoOuIgual(conjuntoComparativo, textoArquivo)
+ContidoOuIgual(conjuntoComparativo2, textoArquivo) 
+
+Intersecao(conjuntoComparativo, textoArquivo)
+
+print("\n\nConjuntos:",conjuntos)
+print("\n\nLista de conjuntos:",listaDeConjuntos,"\n\n\n")
+
+
+    
+    
+    
         
         
