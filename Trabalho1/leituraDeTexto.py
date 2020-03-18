@@ -5,18 +5,11 @@ directory = "C:\\Users\\Igori\\Documents\\Projects\\MatDiscreta\\Trabalho1\\"+no
 arquivo = open(directory)
 textoArquivo = arquivo.read()
 print(textoArquivo)
+texto = textoArquivo.replace("}","")
+print(texto.split(","))
 
 listaDeConjuntos = []
-'''
-for conjunto in textoArquivo:
-    if conjunto == "}":
-        print("Número de elementos do conjunto",conjuntos, "é:" ,conjuntos.__len__())
-        listaDeConjuntos.append(conjuntos)
-        print("Número de conjuntos é:", listaDeConjuntos.__len__())
-        break;
-    elif conjunto != "," and conjunto != " " and conjunto != "{" and conjunto != re.match(r'(\w)',conjunto):
-        conjuntos.append(conjunto)
-'''
+
 nomeConjunto = {"A","B","C","D","E","F","I","G","H","I","J","K","L","M","N","O",
                 "P","Q","R","S","T","U","V","W","X","Y","Z"}
 
@@ -31,6 +24,7 @@ print("\n\n",teste)
 conjuntos = []
 conjuntoComparativo = "A = {1,87,4,-1,43}"
 conjuntoComparativo2 = "{1,87,4,-1,43}"
+conjuntoComparativo3 = "{87,0,-1}"
 
 switcher = {
         ",":"",
@@ -40,13 +34,41 @@ switcher = {
 
     
 def PercorreConjunto(textoArquivo):
-       # a=""
     conjuntoAux = []
     i = 0
+    j = 0
     print("total de elementos = ", (textoArquivo.count(",")+1))
     print("ELementos: ")
     onlyNumbers = ""
     texto = textoArquivo.replace("}", "")
+    texto = texto.split(",")
+    #tirar o in e colocar while
+    while i < texto.__len__():
+        item = texto[i]
+        if str.isdigit(item):
+            onlyNumbers += item
+            conjuntoAux.append(onlyNumbers)
+            onlyNumbers = "" 
+            i+=1
+        else:
+            while j < item.__len__():
+                character = item[j]
+                if str.isdigit(character):
+                    onlyNumbers += character
+                    conjuntoAux.append(onlyNumbers)
+                    onlyNumbers = "" 
+                    j+=1
+                elif character == "-":
+                    onlyNumbers = character
+                    j+=1
+                else:
+                    j+=1
+            j = 0
+            i+=1
+
+            onlyNumbers = "" 
+    print(conjuntoAux)
+    '''
     for item in texto.split(","):
         if str.isdigit(item):
             onlyNumbers += item
@@ -63,6 +85,7 @@ def PercorreConjunto(textoArquivo):
 
             onlyNumbers = "" 
     print(conjuntoAux)
+    '''
     '''while i < textoArquivo.__len__():
         #virgula = simbolos.intersection(textoArquivo[i])
         letraConjunto = nomeConjunto.intersection(textoArquivo[i])
