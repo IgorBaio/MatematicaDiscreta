@@ -197,6 +197,7 @@ def Intersecao(conjuntoComparativo,conjuntoBase):
         
         i+=1
     print(intersecao)
+    return intersecao
 
 def ProdutoCartesiano(conjuntoComparativo, conjuntoBase):
     conjuntoComparativoAux = str(PercorreConjunto(conjuntoComparativo))
@@ -253,12 +254,32 @@ def ProdutoCartesiano(conjuntoComparativo, conjuntoBase):
     return produtoCartesiano
     
     
-'''
-    
+def DiferençaDeConjuntos(conjuntoComparativo, conjuntoBase):
+    intersecao = str(Intersecao(conjuntoComparativo, conjuntoBase))
+    i = 0
+    conjuntoBaseAux = str(PercorreConjunto(conjuntoBase))
+    conjuntoBaseAux = formataConjunto(conjuntoBaseAux)
+    conjuntoBaseAux = conjuntoBaseAux.split(",")
 
+    #intersecao = str(PercorreConjunto(intersecao))
+    intersecao = formataConjunto(intersecao)
+    intersecao = intersecao.split(",")
+
+    while i < conjuntoBaseAux.__len__():
+        j = 0
+        while j < intersecao.__len__():
+            if not intersecao[j] == conjuntoBaseAux[i] and conjuntoBaseAux.__contains__(intersecao[j]):
+                conjuntoBaseAux.remove(intersecao[j])
+            j += 1
+        i +=1
+    return conjuntoBaseAux
+
+
+
+
+'''
 def ConjuntoDasPartes():
     
-def DiferençaDeConjuntos():
 '''
 
 
@@ -279,21 +300,23 @@ def Menu(conjuntoComparativo, conjuntoBase):
     valorMenu = int(input("Digite o valor correspondente a operação desejada: "))
 
     if valorMenu == 0:
-        PercorreConjunto(textoArquivo)
+        PercorreConjunto(conjuntoBase)
     elif valorMenu == 1:
         Pertence("1", textoArquivo)
         #Pertence("2", textoArquivo)
     elif valorMenu == 2:
-        ContidoOuIgual(conjuntoComparativo, textoArquivo)
+        ContidoOuIgual(conjuntoComparativo, conjuntoBase)
         #ContidoOuIgual(conjuntoComparativo2, textoArquivo)
     elif valorMenu == 3:#nao sei se esse ta dentro do anterior ou nao, ou se tenho que fazer um a parte
-        ContidoOuIgual(conjuntoComparativo2, textoArquivo)
+        ContidoOuIgual(conjuntoComparativo, conjuntoBase)
     elif valorMenu == 4:
-        Uniao(conjuntoComparativo3,textoArquivo)
+        Uniao(conjuntoComparativo,conjuntoBase)
     elif valorMenu == 5:
-        Intersecao(conjuntoComparativo3, textoArquivo)
+        Intersecao(conjuntoComparativo, conjuntoBase)
     elif valorMenu == 6:
-        print(ProdutoCartesiano(conjuntoComparativo3,textoArquivo))
+        print(ProdutoCartesiano(conjuntoComparativo,conjuntoBase))
+    elif valorMenu == 8:
+        print(DiferençaDeConjuntos(conjuntoComparativo3,conjuntoBase))
         
 '''
 
@@ -324,12 +347,3 @@ ContidoOuIgual(conjuntoComparativo2, textoArquivo)
 
 Intersecao(conjuntoComparativo, textoArquivo)
 '''
-
-print("\n\nConjuntos:",conjuntos)
-print("\n\nLista de conjuntos:",listaDeConjuntos,"\n\n\n")
-
-
-    
-    
-        
-        
