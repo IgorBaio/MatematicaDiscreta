@@ -26,6 +26,7 @@ conjuntoComparativo = "A = {1,87,4,-1,43}"
 conjuntoComparativo2 = "{1,87,4,-1,43}"
 conjuntoComparativo3 = "{87,0,-1}"
 
+
 switcher = {
         ",":"",
         "{":"",
@@ -38,9 +39,10 @@ def PercorreConjunto(textoArquivo):
     i = 0
     j = 0
     print("total de elementos = ", (textoArquivo.count(",")+1))
-    print("ELementos: ")
+    print("Elementos: ")
     onlyNumbers = ""
-    texto = textoArquivo.replace("}", "")
+    texto = textoArquivo.replace("{", "")
+    texto = texto.replace("}", "")
     texto = texto.split(",")
     #tirar o in e colocar while
     while i < texto.__len__():
@@ -68,6 +70,7 @@ def PercorreConjunto(textoArquivo):
 
             onlyNumbers = "" 
     print(conjuntoAux)
+    return conjuntoAux
     '''
     for item in texto.split(","):
         if str.isdigit(item):
@@ -149,64 +152,101 @@ def Pertence(numero, conjunto):
     else:
         print("O número",numero,"não pertence ao conjunto",conjunto)
 
+#a terceira comparação eu acho que equivale ao contido propriamente 
 def ContidoOuIgual(conjuntoComparativo,conjuntoBase):
     if conjuntoBase == conjuntoComparativo and set(conjuntoComparativo).issubset(set(conjuntoBase)):
-        print("O conjunto compartivo é contido ou igual ao conjunto base")
+        print("O conjunto comparativo é contido ou igual ao conjunto base")
     elif conjuntoBase == conjuntoComparativo:
         print("O conjunto comparativo é igual ao conjunto base.")
-    elif set(conjuntoComparativo).issubset(set(conjuntoBase)):
+    elif set(conjuntoComparativo).issubset(set(conjuntoBase)) and not conjuntoBase == conjuntoComparativo:
         print("O conjunto comparativo está contido no conjunto base.")
 
 def ContidoPropriamente(conjuntoComparativo,conjuntoBase):
     if set(conjuntoComparativo).issubset(set(conjuntoBase)):
         print("O conjunto comparativo está contido propriamente no conjunto base.")
 
+def formataConjunto(conjunto):
+    conjunto = conjunto.replace("[","") 
+    conjunto = conjunto.replace("]","")
+    conjunto = conjunto.replace("'","")
+    conjunto = conjunto.replace(" ","")
+    return conjunto
+
 def Uniao(conjuntoComparativo,conjuntoBase):
+    conjuntoAuxBase = str(PercorreConjunto(conjuntoBase))
+    conjuntoAuxBase = formataConjunto(conjuntoAuxBase)
+    conjuntoAuxComparativo = str(PercorreConjunto(conjuntoComparativo))
+    conjuntoAuxComparativo = formataConjunto(conjuntoAuxComparativo)   
     print()
+    nomeDaUniao = input("Digite a letra do nome do conjunto: ")
+    if conjuntoAuxBase == conjuntoAuxComparativo:
+        print("Conjunto",nomeDaUniao,"= {",conjuntoAuxBase,"}")
+    else:
+        print("Conjunto",nomeDaUniao,"= {",conjuntoAuxBase,",",conjuntoAuxComparativo,"}")
+
 
 
 def Intersecao(conjuntoComparativo,conjuntoBase):
     intersecao = []
-    for elementoComparativo in conjuntoComparativo:
-        for elementoBase in conjuntoBase:
-            if elementoComparativo.__contains__(elementoBase) and not simbolos.intersection(elementoComparativo) and not nomeConjunto.intersection(elementoComparativo):
-                intersecao.append(elementoComparativo)
-    print(intersecao)  
+    conjuntoAuxBase = PercorreConjunto(conjuntoBase)
+    conjuntoAuxComparativo = PercorreConjunto(conjuntoComparativo)
+    i = 0
+    while i < conjuntoAuxBase.__len__():
+        if conjuntoAuxComparativo.__contains__(conjuntoAuxBase[i]):
+            intersecao.append(conjuntoAuxBase[i])
+        
+        i+=1
+    print(intersecao)
 
-
-
-'''        
-
-
-def ProdutoCartesiano():
+def ProdutoCartesiano(conjuntoComparativo, conjuntoBase):
+    conjuntoComparativoAux = str(PercorreConjunto(conjuntoComparativo))
+    conjuntoComparativoAux = formataConjunto(conjuntoComparativoAux)
+    conjuntoComparativoAux = conjuntoComparativoAux.split(",")
     
+
+    conjuntoBaseAux = str(PercorreConjunto(conjuntoBase))
+    conjuntoBaseAux = formataConjunto(conjuntoBaseAux)
+    conjuntoBaseAux = conjuntoBaseAux.split(",")
+    
+    produtoCartesiano = []
+    
+    i = 0
+    
+    while i < conjuntoBaseAux.__len__():
+        j = 0
+        while j < conjuntoComparativoAux.__len__():
+            itemBase = conjuntoBaseAux[i]
+            itemComp = conjuntoComparativoAux[j]
+            if str.isdigit(itemBase) and str.isdigit(itemComp): 
+                produtoCartesiano.append(conjuntoBaseAux[i]+","+conjuntoComparativoAux[j])
+            #if(itemBase.__contains__("-") or itemComp("-")):
+                #fazer a condição pegar numero negativo
+            j += 1
+        i += 1
+    return produtoCartesiano
+    
+    
+'''
+    
+
 def ConjuntoDasPartes():
     
 def DiferençaDeConjuntos():
-    
 '''
 
-'''
-def PercorreNomeConjunto(nomeConjunto):
-    for letraMaiuscula in nomeConjunto:
-           return letraMaiuscula
-'''
 
 def Menu(conjuntoComparativo, conjuntoBase):
     print("**************************************\n")
     print("OPERAÇÕES:\n")
     print("0 - Percorre\n")
-    print("1 - Pertence\n")
-    print("2 - Não pertence\n")
-    print("3 - Contido ou igual \n")
-    print("4 - Não contido ou igual\n")
-    print("5 - Contido propriamente\n")
-    print("6 - Não contido propriamente\n")
-    print("7 - União\n")
-    print("8 - Interseção\n")
-    print("9 - Produto Cartesiano\n")
-    print("10 - Conjunto das partes\n")
-    print("11 - Diferença de conjuntos\n")
+    print("1 - Pertence/ Não pertence\n")
+    print("2 - Contido ou igual/ Não contido ou igual \n")
+    print("3 - Contido propriamente/ Não contido propriamente\n")
+    print("4 - União\n")
+    print("5 - Interseção\n")
+    print("6 - Produto Cartesiano\n")
+    print("7 - Conjunto das partes\n")
+    print("8 - Diferença de conjuntos\n")
     print("**************************************\n")
 
     valorMenu = int(input("Digite o valor correspondente a operação desejada: "))
@@ -215,14 +255,20 @@ def Menu(conjuntoComparativo, conjuntoBase):
         PercorreConjunto(textoArquivo)
     elif valorMenu == 1:
         Pertence("1", textoArquivo)
+        #Pertence("2", textoArquivo)
     elif valorMenu == 2:
-        Pertence("2", textoArquivo)
-    elif valorMenu == 3:
         ContidoOuIgual(conjuntoComparativo, textoArquivo)
-    elif valorMenu == 4:
+        #ContidoOuIgual(conjuntoComparativo2, textoArquivo)
+    elif valorMenu == 3:#nao sei se esse ta dentro do anterior ou nao, ou se tenho que fazer um a parte
         ContidoOuIgual(conjuntoComparativo2, textoArquivo)
-'''
+    elif valorMenu == 4:
+        Uniao(conjuntoComparativo3,textoArquivo)
     elif valorMenu == 5:
+        Intersecao(conjuntoComparativo3, textoArquivo)
+    elif valorMenu == 6:
+        print(ProdutoCartesiano(conjuntoComparativo3,textoArquivo))
+        
+'''
 
     elif valorMenu == 6:
 
@@ -251,11 +297,11 @@ ContidoOuIgual(conjuntoComparativo2, textoArquivo)
 
 Intersecao(conjuntoComparativo, textoArquivo)
 '''
+
 print("\n\nConjuntos:",conjuntos)
 print("\n\nLista de conjuntos:",listaDeConjuntos,"\n\n\n")
 
 
-    
     
     
         
