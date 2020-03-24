@@ -209,19 +209,46 @@ def ProdutoCartesiano(conjuntoComparativo, conjuntoBase):
     conjuntoBaseAux = conjuntoBaseAux.split(",")
     
     produtoCartesiano = []
-    
+    onlyNumbersBase = ""
+    onlyNumbersComp = ""
     i = 0
     
     while i < conjuntoBaseAux.__len__():
         j = 0
-        while j < conjuntoComparativoAux.__len__():
-            itemBase = conjuntoBaseAux[i]
-            itemComp = conjuntoComparativoAux[j]
-            if str.isdigit(itemBase) and str.isdigit(itemComp): 
-                produtoCartesiano.append(conjuntoBaseAux[i]+","+conjuntoComparativoAux[j])
-            #if(itemBase.__contains__("-") or itemComp("-")):
-                #fazer a condição pegar numero negativo
+        itemBase = conjuntoBaseAux[i]
+        if itemBase.__contains__("-"):
+            while j < conjuntoComparativoAux.__len__():
+                onlyNumbersBase += itemBase
+                itemComp = conjuntoComparativoAux[j]
+                if str.isdigit(itemComp): 
+                    onlyNumbersComp += itemComp
+                    produtoCartesiano.append(onlyNumbersBase+","+onlyNumbersComp)
+                    j+=1
+                elif itemComp.__contains__("-"):
+                    onlyNumbersComp = itemComp
+                    produtoCartesiano.append(onlyNumbersBase+","+onlyNumbersComp)
+                    j += 1
+                onlyNumbersComp = ""
+                onlyNumbersBase = ""
+
+        else:    
+            while j < conjuntoComparativoAux.__len__():
+                onlyNumbersBase += itemBase
+                itemComp = conjuntoComparativoAux[j]
+                if str.isdigit(itemBase) and str.isdigit(itemComp): 
+                    onlyNumbersComp += itemComp
+                    produtoCartesiano.append(onlyNumbersBase+","+onlyNumbersComp)
+                    j+=1
+                elif itemComp.__contains__("-"):
+                    onlyNumbersComp = itemComp
+                    produtoCartesiano.append(onlyNumbersBase+","+onlyNumbersComp)
+                    j += 1
+                onlyNumbersComp = ""
+                onlyNumbersBase = ""
+    
             j += 1
+            onlyNumbersComp = ""
+            onlyNumbersBase = ""
         i += 1
     return produtoCartesiano
     
