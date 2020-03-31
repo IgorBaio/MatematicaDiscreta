@@ -31,7 +31,6 @@ def formataConjunto(conjunto):
         i+=1
     return conjunto
 
-
 def RetiraNome(conjunto):
     i = 0
     while i < nomeConjunto.__len__():
@@ -78,14 +77,14 @@ def PercorreConjunto(conjunto):
             onlyNumbers = "" 
     print(conjuntoAux)
     return conjuntoAux
-         
 
 def Pertence(numero, conjunto):
     if conjunto.__contains__(numero):
         mensagem = "O número "+numero+" pertence ao conjunto "+conjunto
         return mensagem
     else:
-        return "O número "+numero+" não pertence ao conjunto "+conjunto
+        mensagem = "O número "+numero+" não pertence ao conjunto "+conjunto
+        return mensagem
  
 def ContidoOuIgual(conjuntoComparativo,conjuntoBase):
     if conjuntoBase == conjuntoComparativo and set(conjuntoComparativo).issubset(set(conjuntoBase)):
@@ -104,29 +103,25 @@ def ContidoPropriamente(conjuntoComparativo,conjuntoBase):
     else:
         mensagem = "O conjunto comparativo não está contido no conjunto base"
         return mensagem
-   
-
 
 def Uniao(conjuntoComparativo,conjuntoBase):
     conjuntoAuxBase = str(PercorreConjunto(conjuntoBase))
     conjuntoAuxBase = formataConjunto(conjuntoAuxBase)
     conjuntoAuxComparativo = str(PercorreConjunto(conjuntoComparativo))
     conjuntoAuxComparativo = formataConjunto(conjuntoAuxComparativo)   
-    a = DiferencaDeConjuntos(conjuntoAuxBase, conjuntoAuxComparativo)
+    diferenca = DiferencaDeConjuntos(conjuntoAuxBase, conjuntoAuxComparativo)
     nomeDaUniao = input("Digite a letra do nome do conjunto: ")
-    if conjuntoAuxBase == conjuntoAuxComparativo:
+    if conjuntoAuxBase == conjuntoAuxComparativo or diferenca == [] :
         mensagem = "Conjunto "+nomeDaUniao+" = { "+conjuntoAuxBase+" }"
         return mensagem
-    elif not a == [] :
-        diferenca =  str(DiferencaDeConjuntos(conjuntoAuxBase, conjuntoAuxComparativo))
+    elif not diferenca == [] :
+        diferenca =  str(diferenca)
         diferenca = formataConjunto(diferenca)
         mensagem = "Conjunto "+nomeDaUniao+" = { "+conjuntoAuxBase+", "+diferenca+" }"
         return mensagem
     else:
         mensagem = "Conjunto "+nomeDaUniao+" = { "+conjuntoAuxBase+", "+conjuntoAuxComparativo+" }"
         return mensagem
-
-
 
 def Intersecao(conjuntoComparativo,conjuntoBase):
     intersecao = []
@@ -195,7 +190,6 @@ def ProdutoCartesiano(conjuntoComparativo, conjuntoBase):
         i += 1
     return produtoCartesiano
     
-    
 def DiferencaDeConjuntos(conjuntoComparativo, conjuntoBase):
     intersecao = str(Intersecao(conjuntoComparativo, conjuntoBase))
     i = 0
@@ -211,10 +205,11 @@ def DiferencaDeConjuntos(conjuntoComparativo, conjuntoBase):
         while j < intersecao.__len__():
             if not intersecao[j] == conjuntoBaseAux[i] and conjuntoBaseAux.__contains__(intersecao[j]):
                 conjuntoBaseAux.remove(intersecao[j])
+            if intersecao[j] == conjuntoBaseAux[i]:
+                conjuntoBaseAux.remove(intersecao[j])
             j += 1
         i +=1
     return conjuntoBaseAux
-
 
 def Menu(conjuntoComparativo, conjuntoBase):
     print("**************************************\n")
