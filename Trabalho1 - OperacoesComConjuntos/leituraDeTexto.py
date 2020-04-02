@@ -224,6 +224,127 @@ def DiferencaDeConjuntos(conjuntoComparativo, conjuntoBase):
         i +=1
     return conjuntoBaseAux
 
+def ConjuntoPartes(conjunto):
+    
+    conjuntoPartes = []
+    conjunto = str(PercorreConjunto(conjunto))
+    conjunto = formataConjunto(conjunto)
+    conjunto = conjunto.split(",")
+    conjuntoPartes.append("{}")
+    i = 0
+    while i < conjunto.__len__():
+        aux = "{" + conjunto[i] + "}"
+        conjuntoPartes.append(aux)
+        i += 1
+
+    x = 0
+    if conjunto.__len__() >= 2:
+        while x < conjunto.__len__():
+            y = x+1
+            while y < conjunto.__len__():
+                conj = "{"+conjunto[x]+","+conjunto[y]+"}"
+                conjuntoPartes.append(conj)
+                y+=1
+            x+=1
+
+    x = 0
+    if conjunto.__len__() >= 3:
+        while x < conjunto.__len__():
+            y = x+1
+            while y < conjunto.__len__():
+                z = y+1
+                while z < conjunto.__len__():
+                    conj = "{"+conjunto[x]+","+conjunto[y]+","+conjunto[z]+"}"
+                    conjuntoPartes.append(conj)
+                    z+=1
+                y+=1
+            x+=1
+    
+    x = 0
+    if conjunto.__len__() >= 4:
+        while x < conjunto.__len__():
+            y = x+1
+            while y < conjunto.__len__():
+                z = y+1
+                while z < conjunto.__len__():
+                    a = z+1
+                    while a < conjunto.__len__():
+                        conj = "{"+conjunto[x]+","+conjunto[y]+","+conjunto[z]+","+conjunto[a]+"}"
+                        conjuntoPartes.append(conj)
+                        a+=1
+                    z+=1
+                y+=1
+            x+=1
+
+    x = 0
+    if conjunto.__len__() >= 5:
+        while x < conjunto.__len__():
+            y = x+1
+            while y < conjunto.__len__():
+                z = y+1
+                while z < conjunto.__len__():
+                    a = z+1
+                    while a < conjunto.__len__():
+                        b = a+1
+                        while b < conjunto.__len__():
+                            conj = "{"+conjunto[x]+","+conjunto[y]+","+conjunto[z]+","+conjunto[a]+","+conjunto[b]+"}"
+                            conjuntoPartes.append(conj)
+                            b+=1
+                        a+=1
+                    z+=1
+                y+=1
+            x+=1
+
+    x = 0
+    if conjunto.__len__() >= 6:
+        while x < conjunto.__len__():
+            y = x+1
+            while y < conjunto.__len__():
+                z = y+1
+                while z < conjunto.__len__():
+                    a = z+1
+                    while a < conjunto.__len__():
+                        b = a+1
+                        while b < conjunto.__len__():
+                            c = b+1
+                            while c < conjunto.__len__():
+                                conj = "{"+conjunto[x]+","+conjunto[y]+","+conjunto[z]+","+conjunto[a]+","+conjunto[b]+","+conjunto[c]+"}"
+                                conjuntoPartes.append(conj)
+                                c+=1
+                            b+=1
+                        a+=1
+                    z+=1
+                y+=1
+            x+=1
+
+    x = 0
+    if conjunto.__len__() >= 7:
+        while x < conjunto.__len__():
+            y = x+1
+            while y < conjunto.__len__():
+                z = y+1
+                while z < conjunto.__len__():
+                    a = z+1
+                    while a < conjunto.__len__():
+                        b = a+1
+                        while b < conjunto.__len__():
+                            c = b+1
+                            while c < conjunto.__len__():
+                                d = c+1
+                                while d < conjunto.__len__():
+                                    conj = "{"+conjunto[x]+","+conjunto[y]+","+conjunto[z]+","+conjunto[a]+","+conjunto[b]+","+conjunto[c]+","+conjunto[d]+"}"
+                                    conjuntoPartes.append(conj)
+                                    d+=1
+                                c+=1
+                            b+=1
+                        a+=1
+                    z+=1
+                y+=1
+            x+=1
+    
+    return conjuntoPartes
+
+
 def Menu(conjuntoComparativo, conjuntoBase):
     print("**************************************\n")
     print("OPERAÇÕES:\n")
@@ -236,6 +357,7 @@ def Menu(conjuntoComparativo, conjuntoBase):
     print("6 - Produto Cartesiano (AXB)\n")
     print("7 - Diferença de conjuntos\n")
     print("8 - Exibir elementos\n")
+    print("9 - Conjunto das Partes\n")
     print("**************************************\n")
 
     valorMenu = int(input("Digite o valor correspondente a operação desejada: "))
@@ -300,10 +422,19 @@ def Menu(conjuntoComparativo, conjuntoBase):
             print("\n\nElementos",Elementos(conjuntoBase))
         elif opcao == "2":
             print("\n\nElementos:",Elementos(conjuntoComparativo))
+    elif valorMenu == 9:
+        print("************************************")
+        opcao = input("1 - Conjunto das partes de A:\n2 - Conjunto das partes de B: ")
+        if opcao == "1":
+            print("\n\nElementos",Elementos(conjuntoBase))
+            print("\n\nConjunto das partes de A:",ConjuntoPartes(conjuntoBase))
+        if opcao == "2":
+            print("\n\nElementos",Elementos(conjuntoComparativo))
+            print("\n\nConjunto das partes de B:",ConjuntoPartes(conjuntoComparativo))
 
 Menu(textoArquivo2, textoArquivo)
 contador = 0
-while contador < 40:
+while contador < 45:
     resposta = input("\n\nDeseja fazer uma nova operação? (S/N) ")
     if resposta.lower() == "s":
         Menu(textoArquivo2,textoArquivo)
