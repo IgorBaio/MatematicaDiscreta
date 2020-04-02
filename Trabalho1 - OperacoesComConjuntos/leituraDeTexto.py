@@ -5,26 +5,45 @@ input("A seguir será pedido para que insira dois arquivos de texto, para isso i
 
 print("\n\n")
 
-print("\n\nConjunto A:")
-directory = input("Digite seu repositorio: ")
-directory = directory.replace("\\","\\\\" )
-nomeArquivo = input("Digite o nome do arquivo: ")
-nomeArquivo = nomeArquivo+".txt"
-directory = directory+"\\"+nomeArquivo
+sistema = input("Usuario, voce e utiliza Linux ou Windows?(L / W) ")
 
-arquivo = open(directory)
-textoArquivo = arquivo.read()
+if sistema.upper() == "W":
+    print("\n\nConjunto A:")
+    directory = input("Digite seu repositorio: ")
+    directory = directory.replace("\\","\\\\" )
+    nomeArquivo = input("Digite o nome do arquivo: ")
+    nomeArquivo = nomeArquivo+".txt"
+    directory = directory+"\\"+nomeArquivo
+    arquivo = open(directory)
+    textoArquivo = arquivo.read()
 
 
-print("\n\nConjunto B:")
-directory2 = input("Digite seu repositorio: ")
-directory2 = directory2.replace("\\","\\\\" )
-nomeArquivo2 = input("Digite o nome do arquivo: ")
-nomeArquivo2 = nomeArquivo2+".txt"
-directory2 = directory2+"\\"+nomeArquivo2
+    print("\n\nConjunto B:")
+    directory2 = input("Digite seu repositorio: ")
+    directory2 = directory2.replace("\\","\\\\" )
+    nomeArquivo2 = input("Digite o nome do arquivo: ")
+    nomeArquivo2 = nomeArquivo2+".txt"
+    directory2 = directory2+"\\"+nomeArquivo2
+    arquivo2 = open(directory2)
 
-arquivo2 = open(directory2)
-textoArquivo2 = arquivo2.read()
+else:
+    print("\n\nConjunto A:")
+    directory = input("Digite seu repositorio: ")
+    # directory = directory.replace("\\","\\\\" )
+    nomeArquivo = input("Digite o nome do arquivo: ")
+    nomeArquivo = nomeArquivo+".txt"
+    directory = directory+"/"+nomeArquivo
+    arquivo = open(directory)
+    textoArquivo = arquivo.read()
+    
+    print("\n\nConjunto B:")
+    directory2 = input("Digite seu repositorio: ")
+    # directory2 = directory2.replace("\\","\\\\" )
+    nomeArquivo2 = input("Digite o nome do arquivo: ")
+    nomeArquivo2 = nomeArquivo2+".txt"
+    directory2 = directory2+"/"+nomeArquivo2
+    arquivo2 = open(directory2)
+    textoArquivo2 = arquivo2.read()
 
 nomeConjunto = ["A","B","C","D","E","F","I","G","H","I","J","K","L","M","N","O",
                 "P","Q","R","S","T","U","V","W","X","Y","Z"]
