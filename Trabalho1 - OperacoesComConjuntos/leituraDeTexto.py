@@ -50,7 +50,7 @@ def RetiraNome(conjunto):
     return conjunto
 
 def Elementos(conjunto):
-    print("Total de elementos = ", (conjunto.count(",")+1))
+    print("\n\nTotal de elementos = ", (conjunto.count(",")+1))
     print("Elementos: ")
     return PercorreConjunto(conjunto)
 
@@ -92,13 +92,20 @@ def PercorreConjunto(conjunto):
     return conjuntoAux
 
 def Pertence(numero, conjunto):
-    if conjunto.__contains__(numero):
-        mensagem = "O número "+numero+" pertence ao conjunto "+conjunto
-        return mensagem
-    else:
-        mensagem = "O número "+numero+" não pertence ao conjunto "+conjunto
-        return mensagem
- 
+    conjuntoAux = str(PercorreConjunto(conjunto))
+    conjuntoAux = formataConjunto(conjuntoAux)
+    conjuntoAux = conjuntoAux.split(",")
+    i = 0
+    while i < conjuntoAux.__len__():
+        if conjuntoAux[i] == numero:
+            mensagem = "O número "+numero+" pertence ao conjunto "+conjunto
+            return mensagem
+        else:
+            i += 1
+    mensagem = "O número "+numero+" não pertence ao conjunto "+conjunto
+    return mensagem
+    
+
 def ContidoOuIgual(conjuntoComparativo,conjuntoBase):
     if conjuntoBase == conjuntoComparativo and set(conjuntoComparativo).issubset(set(conjuntoBase)):
         mensagem = "O conjunto comparativo é contido ou igual ao conjunto base"
@@ -366,17 +373,17 @@ def Menu(conjuntoComparativo, conjuntoBase):
         print("************************************")
         opcao = input("1 - Percorre A:\n2 - Percorre B: ")
         if opcao == "1":
-            print("Conjunto Percorrido: A = ",PercorreConjunto(conjuntoBase))
+            print("\nConjunto Percorrido: A = ",PercorreConjunto(conjuntoBase))
         elif opcao == "2":
-            print("Conjunto Percorrido: B = ",PercorreConjunto(conjuntoComparativo))
+            print("\nConjunto Percorrido: B = ",PercorreConjunto(conjuntoComparativo))
     elif valorMenu == 1:
         print("************************************")
         opcao = input("1 - Pertence ao Conjunto A:\n2 - Pertence ao Conjunto B: ")
         if opcao == "1":
-            valor = input("Digite o valor que deseja procurar no conjunto: ")
+            valor = input("\nDigite o valor que deseja procurar no conjunto: ")
             print(Pertence(valor, conjuntoBase))
         if opcao == "2":
-            valor = input("Digite o valor que deseja procurar no conjunto: ")
+            valor = input("\nDigite o valor que deseja procurar no conjunto: ")
             print(Pertence(valor, conjuntoComparativo))
     elif valorMenu == 2:
         print("************************************")
