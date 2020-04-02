@@ -1,3 +1,11 @@
+print("\n\n")
+
+input("A seguir será pedido para que insira dois arquivos de texto, para isso irá pedir para cada um,"+
+" o repositório e o nome do arquivo, para continuar, pressione Enter.")
+
+print("\n\n")
+
+print("\n\nConjunto A:")
 directory = input("Digite seu repositorio: ")
 directory = directory.replace("\\","\\\\" )
 nomeArquivo = input("Digite o nome do arquivo: ")
@@ -7,6 +15,8 @@ directory = directory+"\\"+nomeArquivo
 arquivo = open(directory)
 textoArquivo = arquivo.read()
 
+
+print("\n\nConjunto B:")
 directory2 = input("Digite seu repositorio: ")
 directory2 = directory2.replace("\\","\\\\" )
 nomeArquivo2 = input("Digite o nome do arquivo: ")
@@ -39,12 +49,15 @@ def RetiraNome(conjunto):
         i+=1
     return conjunto
 
+def Elementos(conjunto):
+    print("Total de elementos = ", (conjunto.count(",")+1))
+    print("Elementos: ")
+    return PercorreConjunto(conjunto)
+
 def PercorreConjunto(conjunto):
     conjuntoAux = []
     i = 0
     j = 0
-    print("Total de elementos = ", (conjunto.count(",")+1))
-    print("Elementos: ")
     onlyNumbers = ""
     
     texto = RetiraNome(conjunto)
@@ -75,7 +88,7 @@ def PercorreConjunto(conjunto):
             i+=1
 
             onlyNumbers = "" 
-    print(conjuntoAux)
+    
     return conjuntoAux
 
 def Pertence(numero, conjunto):
@@ -112,15 +125,15 @@ def Uniao(conjuntoComparativo,conjuntoBase):
     diferenca = DiferencaDeConjuntos(conjuntoAuxBase, conjuntoAuxComparativo)
     nomeDaUniao = input("Digite a letra do nome do conjunto: ")
     if conjuntoAuxBase == conjuntoAuxComparativo or diferenca == [] :
-        mensagem = "Conjunto "+nomeDaUniao+" = { "+conjuntoAuxBase+" }"
+        mensagem = "Conjunto "+nomeDaUniao.upper()+" = { "+conjuntoAuxBase+" }"
         return mensagem
     elif not diferenca == [] :
         diferenca =  str(diferenca)
         diferenca = formataConjunto(diferenca)
-        mensagem = "Conjunto "+nomeDaUniao+" = { "+conjuntoAuxBase+", "+diferenca+" }"
+        mensagem = "Conjunto "+nomeDaUniao.upper()+" = { "+conjuntoAuxBase+", "+diferenca+" }"
         return mensagem
     else:
-        mensagem = "Conjunto "+nomeDaUniao+" = { "+conjuntoAuxBase+", "+conjuntoAuxComparativo+" }"
+        mensagem = "Conjunto "+nomeDaUniao.upper()+" = { "+conjuntoAuxBase+", "+conjuntoAuxComparativo+" }"
         return mensagem
 
 def Intersecao(conjuntoComparativo,conjuntoBase):
@@ -220,28 +233,81 @@ def Menu(conjuntoComparativo, conjuntoBase):
     print("3 - Contido propriamente/ Não contido propriamente\n")
     print("4 - União\n")
     print("5 - Interseção\n")
-    print("6 - Produto Cartesiano\n")
+    print("6 - Produto Cartesiano (AXB)\n")
     print("7 - Diferença de conjuntos\n")
+    print("8 - Exibir elementos\n")
     print("**************************************\n")
 
     valorMenu = int(input("Digite o valor correspondente a operação desejada: "))
 
     if valorMenu == 0:
-        print(PercorreConjunto(conjuntoBase))
+        print("************************************")
+        opcao = input("1 - Percorre A:\n2 - Percorre B: ")
+        if opcao == "1":
+            print("Conjunto Percorrido: A = ",PercorreConjunto(conjuntoBase))
+        elif opcao == "2":
+            print("Conjunto Percorrido: B = ",PercorreConjunto(conjuntoComparativo))
     elif valorMenu == 1:
-        valor = input("Digite o valor que deseja procurar no conjunto: ")
-        print(Pertence(valor, textoArquivo))        
+        print("************************************")
+        opcao = input("1 - Pertence ao Conjunto A:\n2 - Pertence ao Conjunto B: ")
+        if opcao == "1":
+            valor = input("Digite o valor que deseja procurar no conjunto: ")
+            print(Pertence(valor, conjuntoBase))
+        if opcao == "2":
+            valor = input("Digite o valor que deseja procurar no conjunto: ")
+            print(Pertence(valor, conjuntoComparativo))
     elif valorMenu == 2:
-        print(ContidoOuIgual(conjuntoComparativo, conjuntoBase))
+        print("************************************")
+        opcao = input("1 - B C A:\n2 - A C B: ")
+        if opcao == "1":
+            print(ContidoOuIgual(conjuntoComparativo, conjuntoBase))
+        if opcao == "2":
+            print(ContidoOuIgual(conjuntoBase,conjuntoComparativo))
     elif valorMenu == 3:
-        print(ContidoOuIgual(conjuntoComparativo, conjuntoBase))
+        print("************************************")
+        opcao = input("1 - B C A:\n2 - A C B: ")
+        if opcao == "1":
+            print(ContidoOuIgual(conjuntoComparativo, conjuntoBase))
+        if opcao == "2":
+            print(ContidoOuIgual(conjuntoBase,conjuntoComparativo))
     elif valorMenu == 4:
-        print(Uniao(conjuntoComparativo,conjuntoBase))
+        print("************************************")
+        opcao = input("1 - A U B:\n2 - B U A: ")
+        if opcao == "1":
+            print("\n\nUnião:",Uniao(conjuntoComparativo,conjuntoBase))
+        if opcao == "2":
+            print("\n\nUnião:",Uniao(conjuntoBase,conjuntoComparativo))
     elif valorMenu == 5:
-        print(Intersecao(conjuntoComparativo, conjuntoBase))
+        print("\n\nInterseção:",Intersecao(conjuntoComparativo, conjuntoBase))
     elif valorMenu == 6:
-        print(ProdutoCartesiano(conjuntoComparativo,conjuntoBase))
+        print("************************************")
+        opcao = input("1 - (AxB)\n2 - (BxA) ")
+        if opcao == "1":
+            print("\n\nProduto Cartesiano:",ProdutoCartesiano(conjuntoComparativo,conjuntoBase))
+        elif opcao == "2":
+            print("\n\nProduto Cartesiano:",ProdutoCartesiano(conjuntoBase,conjuntoComparativo))
     elif valorMenu == 7:
-        print("Diferença de conjunto:",DiferencaDeConjuntos(conjuntoComparativo,conjuntoBase))
+        print("************************************")
+        opcao = input("1 - (A - B)\n2 - (B - A) ")
+        if opcao == "1":
+            print("\n\nDiferença de conjunto:",DiferencaDeConjuntos(conjuntoComparativo,conjuntoBase))
+        elif opcao == "2":
+            print("\n\nDiferença de conjunto:",DiferencaDeConjuntos(conjuntoBase,conjuntoComparativo))
+    elif valorMenu == 8:
+        print("************************************")
+        opcao = input("1 - Elementos de A:\n2 - Elementos de B: ")
+        if opcao == "1":
+            print("\n\nElementos",Elementos(conjuntoBase))
+        elif opcao == "2":
+            print("\n\nElementos:",Elementos(conjuntoComparativo))
 
 Menu(textoArquivo2, textoArquivo)
+contador = 0
+while contador < 40:
+    resposta = input("\n\nDeseja fazer uma nova operação? (S/N) ")
+    if resposta.lower() == "s":
+        Menu(textoArquivo2,textoArquivo)
+        contador += 1
+    else:
+        input("\n\nPressione enter para finalizar.\n\n")
+        break
