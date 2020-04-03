@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script.js"></script>
+    <title>Relações</title>
+</head>
+<body>
+    <label>
+        <h2 >
+            <a id="arquivo1">
+                Aqruivo1
+            </a>
+        </h2>   
+    </label>
+
+    <form method="post">
+		<!--Content will go inside here.-->
+		<input name="file1" id="file" type="text">
+		<a value="Upload Now" onclick="getFile1()">Send</a>
+	</form>
+
+    <!-- <input type="file" onload="getFile1()" id="arquivo1"/> -->
+    <input type="file" id="arquivo2"/>
+
+    <button type="submit" onclick="getMyProgram(arquivo1,arquivo2)">Iniciar</button>
+
+</body>
+</html>
