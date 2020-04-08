@@ -176,8 +176,10 @@ def MenorQue(conjuntoComparativo,conjuntoBase):
     i = 0
     while i < conjuntoAuxBase.__len__():
         j = 0
+        a = conjuntoAuxBase[i]
         while j < conjuntoAuxComparativo.__len__():
-            if conjuntoAuxBase[i] < conjuntoAuxComparativo[j]:
+            b = conjuntoAuxComparativo[j]
+            if float(conjuntoAuxBase[i]) < float(conjuntoAuxComparativo[j]):
                 conjuntoMenorQue.append(ProdutoCartesiano(conjuntoAuxComparativo[j], conjuntoAuxBase[i]))
                 j += 1
             else:
@@ -200,7 +202,7 @@ def MaiorQue(conjuntoComparativo,conjuntoBase):
     while i < conjuntoAuxBase.__len__():
         j = 0
         while j < conjuntoAuxComparativo.__len__():
-            if conjuntoAuxBase[i] > conjuntoAuxComparativo[j]:
+            if float(conjuntoAuxBase[i]) > float(conjuntoAuxComparativo[j]):
                 conjuntoMaiorQue.append(ProdutoCartesiano(conjuntoAuxComparativo[j], conjuntoAuxBase[i]))
                 j += 1
             else:
@@ -266,9 +268,11 @@ def SerRaizDe(conjuntoComparativo,conjuntoBase):
     while i < conjuntoAuxBase.__len__():
         j = 0
         while j < conjuntoAuxComparativo.__len__():
-            if float(conjuntoAuxBase[i]) == float(float(conjuntoAuxComparativo[j])**0.5):
-                conjuntoSerRaizDe.append(ProdutoCartesiano(conjuntoAuxComparativo[j], conjuntoAuxBase[i]))
+            if conjuntoAuxBase[i].__contains__("-") or conjuntoAuxComparativo[j].__contains__("-"):
                 j += 1
+            elif float(conjuntoAuxBase[i]) == float(float(conjuntoAuxComparativo[j])**0.5):
+                conjuntoSerRaizDe.append(ProdutoCartesiano(conjuntoAuxComparativo[j], conjuntoAuxBase[i]))
+                j +=1
             else:
                 j += 1
         i += 1
@@ -301,33 +305,53 @@ def Menu(conjuntoComparativo, conjuntoBase):
         print("************************************")
         opcao = input("1 - A > B:\n2 - B > A: ")
         if opcao == "1":
-            print("\n\nMaior que:",MaiorQue(conjuntoComparativo, conjuntoBase))
+            print("\n\nConjunto A",PercorreConjunto(conjuntoBase),"é Dominio e apresenta relacao Total.")
+            print("\nConjunto B",PercorreConjunto(conjuntoComparativo),"é Imagem e apresenta relacao Sobrejetora.")
+            print("\nMaior que:",MaiorQue(conjuntoComparativo, conjuntoBase))
         if opcao == "2":
-            print("\n\nMaior que:",MaiorQue(conjuntoBase, conjuntoComparativo))
+            print("\n\nConjunto B",PercorreConjunto(conjuntoBase),"é Dominio e apresenta relacao Total.")
+            print("\nConjunto A",PercorreConjunto(conjuntoComparativo),"é Imagem e apresenta relacao Sobrejetora.")
+            print("\nMaior que:",MaiorQue(conjuntoBase, conjuntoComparativo))
     elif valorMenu == 2:
         opcao = input("1 - A < B:\n2 - B < A: ")
         if opcao == "1":
-            print("\n\nMenor que:",MenorQue(conjuntoComparativo, conjuntoBase))
+            print("\n\nConjunto A",PercorreConjunto(conjuntoBase),"é Dominio e apresenta relacao Total.")
+            print("\nConjunto B",PercorreConjunto(conjuntoComparativo),"é Imagem e apresenta relacao Sobrejetora.")
+            print("\nMenor que:",MenorQue(conjuntoComparativo, conjuntoBase))
         if opcao == "2":
-            print("\n\nMenor que:",MenorQue(conjuntoBase, conjuntoComparativo))
+            print("\n\nConjunto B",PercorreConjunto(conjuntoBase),"é Dominio e apresenta relacao Total.")
+            print("\nConjunto A",PercorreConjunto(conjuntoComparativo),"é Imagem e apresenta relacao Sobrejetora.")
+            print("\nMenor que:",MenorQue(conjuntoBase, conjuntoComparativo))
     elif valorMenu == 3:
         opcao = input("1 - A = B:\n2 - B = A: ")
         if opcao == "1":
-            print("\n\nIgual a:",IgualA(conjuntoComparativo, conjuntoBase))
+            print("\n\nConjunto A",PercorreConjunto(conjuntoBase),"é Dominio e apresenta relacao Total.")
+            print("\nConjunto B",PercorreConjunto(conjuntoComparativo),"é Imagem e apresenta relacao Sobrejetora.")
+            print("\nIgual a:",IgualA(conjuntoComparativo, conjuntoBase))
         if opcao == "2":
-            print("\n\nIgual a:",IgualA(conjuntoBase, conjuntoComparativo))
+            print("\n\nConjunto B",PercorreConjunto(conjuntoBase),"é Dominio e apresenta relacao Total.")
+            print("\nConjunto A",PercorreConjunto(conjuntoComparativo),"é Imagem e apresenta relacao Sobrejetora.")
+            print("\nIgual a:",IgualA(conjuntoComparativo, conjuntoBase))
     elif valorMenu == 4:
         opcao = input("1 - A ser quadrado de B:\n2 - B ser quadrado de A: ")
         if opcao == "1":
-            print("\n\nConjuntos de quadrados:",SerQuadradoDe(conjuntoComparativo, conjuntoBase))
+            print("\n\nConjunto A",PercorreConjunto(conjuntoBase),"é Dominio e apresenta relacao Funcional.")
+            print("\nConjunto B",PercorreConjunto(conjuntoComparativo),"é Imagem e apresenta relacao Injetora.")
+            print("\nConjuntos de quadrados:",SerQuadradoDe(conjuntoComparativo, conjuntoBase))
         if opcao == "2":
-            print("\n\nConjuntos de quadrados:",SerQuadradoDe(conjuntoBase, conjuntoComparativo))
+            print("\n\nConjunto B",PercorreConjunto(conjuntoBase),"é Dominio e apresenta relacao Funcional.")
+            print("\nConjunto A",PercorreConjunto(conjuntoComparativo),"é Imagem e apresenta relacao Injetora.")
+            print("\nConjuntos de quadrados:",SerQuadradoDe(conjuntoBase, conjuntoComparativo))
     elif valorMenu == 5:
         opcao = input("1 - A ser raiz de B:\n2 - B ser raiz de A: ")
         if opcao == "1":
-            print("\n\nConjuntos de raizes:",SerRaizDe(conjuntoComparativo, conjuntoBase))
+            print("\n\nConjunto A",PercorreConjunto(conjuntoBase),"é Dominio e apresenta relacao Funcional.")
+            print("\nConjunto B",PercorreConjunto(conjuntoComparativo),"é Imagem e apresenta relacao Injetora.")
+            print("\nConjuntos de raizes:",SerRaizDe(conjuntoComparativo, conjuntoBase))
         if opcao == "2":
-            print("\n\nConjuntos de raizes:",SerRaizDe(conjuntoBase, conjuntoComparativo))
+            print("\n\nConjunto B",PercorreConjunto(conjuntoBase),"é Dominio e apresenta relacao Funcional.")
+            print("\nConjunto A",PercorreConjunto(conjuntoComparativo),"é Imagem e apresenta relacao Injetora.")
+            print("\nConjuntos de raizes:",SerRaizDe(conjuntoBase, conjuntoComparativo))
    
 
 Menu(textoArquivo2, textoArquivo)

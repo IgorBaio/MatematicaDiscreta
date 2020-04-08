@@ -1,0 +1,11 @@
+Func -> quadrado quando for dominio
+	raiz quando for dominio
+
+Injet -> quadrado quando for imagem
+	 raiz quando for imagem
+
+Total -> maior que quando for dominio
+	 menor que quando for dominio
+
+sobrej -> maior que quando for imagem
+	  menor que quando for imagem
