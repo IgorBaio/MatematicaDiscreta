@@ -230,7 +230,49 @@ def IgualA(conjuntoComparativo,conjuntoBase):
         i += 1
     return conjuntoIgualA
 
+def SerQuadradoDe(conjuntoComparativo,conjuntoBase):
+    conjuntoAuxBase = str(PercorreConjunto(conjuntoBase))
+    conjuntoAuxBase = formataConjunto(conjuntoAuxBase)
+    conjuntoAuxBase = conjuntoAuxBase.split(",")
 
+    conjuntoAuxComparativo = str(PercorreConjunto(conjuntoComparativo))
+    conjuntoAuxComparativo = formataConjunto(conjuntoAuxComparativo)
+    conjuntoAuxComparativo = conjuntoAuxComparativo.split(",")
+
+    conjuntoSerQuadradoDe = []
+    i = 0
+    while i < conjuntoAuxBase.__len__():
+        j = 0
+        while j < conjuntoAuxComparativo.__len__():
+            if int(conjuntoAuxBase[i]) == int(conjuntoAuxComparativo[j])*int(conjuntoAuxComparativo[j]):
+                conjuntoSerQuadradoDe.append(ProdutoCartesiano(conjuntoAuxComparativo[j], conjuntoAuxBase[i]))
+                j += 1
+            else:
+                j += 1
+        i += 1
+    return conjuntoSerQuadradoDe
+
+def SerRaizDe(conjuntoComparativo,conjuntoBase):
+    conjuntoAuxBase = str(PercorreConjunto(conjuntoBase))
+    conjuntoAuxBase = formataConjunto(conjuntoAuxBase)
+    conjuntoAuxBase = conjuntoAuxBase.split(",")
+
+    conjuntoAuxComparativo = str(PercorreConjunto(conjuntoComparativo))
+    conjuntoAuxComparativo = formataConjunto(conjuntoAuxComparativo)
+    conjuntoAuxComparativo = conjuntoAuxComparativo.split(",")
+
+    conjuntoSerRaizDe = []
+    i = 0
+    while i < conjuntoAuxBase.__len__():
+        j = 0
+        while j < conjuntoAuxComparativo.__len__():
+            if float(conjuntoAuxBase[i]) == float(float(conjuntoAuxComparativo[j])**0.5):
+                conjuntoSerRaizDe.append(ProdutoCartesiano(conjuntoAuxComparativo[j], conjuntoAuxBase[i]))
+                j += 1
+            else:
+                j += 1
+        i += 1
+    return conjuntoSerRaizDe
     
 
 
@@ -275,12 +317,18 @@ def Menu(conjuntoComparativo, conjuntoBase):
         if opcao == "2":
             print("\n\nIgual a:",IgualA(conjuntoBase, conjuntoComparativo))
     elif valorMenu == 4:
-        print("************************************")
-        opcao = input("1 - A U B:\n2 - B U A: ")
-        # if opcao == "1":
-        # if opcao == "2":
-    # elif valorMenu == 5:
-    
+        opcao = input("1 - A ser quadrado de B:\n2 - B ser quadrado de A: ")
+        if opcao == "1":
+            print("\n\nConjuntos de quadrados:",SerQuadradoDe(conjuntoComparativo, conjuntoBase))
+        if opcao == "2":
+            print("\n\nConjuntos de quadrados:",SerQuadradoDe(conjuntoBase, conjuntoComparativo))
+    elif valorMenu == 5:
+        opcao = input("1 - A ser raiz de B:\n2 - B ser raiz de A: ")
+        if opcao == "1":
+            print("\n\nConjuntos de raizes:",SerRaizDe(conjuntoComparativo, conjuntoBase))
+        if opcao == "2":
+            print("\n\nConjuntos de raizes:",SerRaizDe(conjuntoBase, conjuntoComparativo))
+   
 
 Menu(textoArquivo2, textoArquivo)
 contador = 0
