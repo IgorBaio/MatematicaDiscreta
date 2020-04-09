@@ -5,9 +5,7 @@ input("A seguir será pedido para que insira dois arquivos de texto, para isso i
 
 print("\n\n")
 
-sistema = input("Usuario, voce utiliza Linux ou Windows?(L / W) ")
-
-if sistema.upper() == "W":
+def PerguntaWindows(textoArquivo):
     print("\n\nConjunto A:")
     directory = input("Digite seu repositorio: ")
     directory = directory.replace("\\","\\\\" )
@@ -15,7 +13,7 @@ if sistema.upper() == "W":
     nomeArquivo = nomeArquivo+".txt"
     directory = directory+"\\"+nomeArquivo
     arquivo = open(directory)
-    textoArquivo = arquivo.read()
+    textoArquivo[0]= arquivo.read()
 
 
     print("\n\nConjunto B:")
@@ -25,24 +23,70 @@ if sistema.upper() == "W":
     nomeArquivo2 = nomeArquivo2+".txt"
     directory2 = directory2+"\\"+nomeArquivo2
     arquivo2 = open(directory2)
-    textoArquivo2 = arquivo2.read()
+    textoArquivo[1] = arquivo2.read()
 
+def PerguntaLinux(textoArquivo):
+        print("\n\nConjunto A:")
+        directory = input("Digite seu repositorio: ")
+        nomeArquivo = input("Digite o nome do arquivo: ")
+        nomeArquivo = nomeArquivo+".txt"
+        directory = directory+"/"+nomeArquivo
+        arquivo = open(directory)
+        textoArquivo[0]= arquivo.read()
+        
+        print("\n\nConjunto B:")
+        directory2 = input("Digite seu repositorio: ")
+        nomeArquivo2 = input("Digite o nome do arquivo: ")
+        nomeArquivo2 = nomeArquivo2+".txt"
+        directory2 = directory2+"/"+nomeArquivo2
+        arquivo2 = open(directory2)
+        textoArquivo[1] = arquivo2.read()
+
+
+
+def PegaDoisConjuntos(sistema,textoArquivo):
+    if sistema.upper() == "W":
+        PerguntaWindows(textoArquivo)
+    else:
+        PerguntaLinux(textoArquivo)
+
+def PegaTresConjuntos(sistema,textoArquivo):
+    if sistema.upper() == "W":
+        PerguntaWindows(textoArquivo)
+
+        print("\n\nConjunto C:")
+        directory3 = input("Digite seu repositorio: ")
+        nomeArquivo3 = input("Digite o nome do arquivo: ")
+        nomeArquivo3 = nomeArquivo3+".txt"
+        directory3 = directory3+"/"+nomeArquivo3
+        arquivo3 = open(directory3)
+        textoArquivo[2] = arquivo3.read()
+
+    else:
+        PerguntaLinux(textoArquivo)
+        
+        print("\n\nConjunto C:")
+        directory3 = input("Digite seu repositorio: ")
+        nomeArquivo3 = input("Digite o nome do arquivo: ")
+        nomeArquivo3 = nomeArquivo3+".txt"
+        directory3 = directory3+"/"+nomeArquivo3
+        arquivo3 = open(directory3)
+        textoArquivo[2] = arquivo3.read()
+
+
+sistema = input("Usuario, voce utiliza Linux ou Windows?(L / W) ")
+
+quantConjuntos = input("Deseja utilizar quantos conjuntos?(2 / 3) ")
+
+textoArquivo = {}
+
+if quantConjuntos == "2":
+    PegaDoisConjuntos(sistema,textoArquivo)    
 else:
-    print("\n\nConjunto A:")
-    directory = input("Digite seu repositorio: ")
-    nomeArquivo = input("Digite o nome do arquivo: ")
-    nomeArquivo = nomeArquivo+".txt"
-    directory = directory+"/"+nomeArquivo
-    arquivo = open(directory)
-    textoArquivo = arquivo.read()
-    
-    print("\n\nConjunto B:")
-    directory2 = input("Digite seu repositorio: ")
-    nomeArquivo2 = input("Digite o nome do arquivo: ")
-    nomeArquivo2 = nomeArquivo2+".txt"
-    directory2 = directory2+"/"+nomeArquivo2
-    arquivo2 = open(directory2)
-    textoArquivo2 = arquivo2.read()
+    PegaTresConjuntos(sistema,textoArquivo)
+
+
+
 
 nomeConjunto = ["A","B","C","D","E","F","I","G","H","I","J","K","L","M","N","O",
                 "P","Q","R","S","T","U","V","W","X","Y","Z"]
@@ -176,9 +220,7 @@ def MenorQue(conjuntoComparativo,conjuntoBase):
     i = 0
     while i < conjuntoAuxBase.__len__():
         j = 0
-        a = conjuntoAuxBase[i]
         while j < conjuntoAuxComparativo.__len__():
-            b = conjuntoAuxComparativo[j]
             if float(conjuntoAuxBase[i]) < float(conjuntoAuxComparativo[j]):
                 conjuntoMenorQue.append(ProdutoCartesiano(conjuntoAuxComparativo[j], conjuntoAuxBase[i]))
                 j += 1
@@ -280,7 +322,6 @@ def SerRaizDe(conjuntoComparativo,conjuntoBase):
     
 
 
-
 def Menu(conjuntoComparativo, conjuntoBase):
     print("**************************************\n")
     print("OPERAÇÕES:\n")
@@ -354,12 +395,12 @@ def Menu(conjuntoComparativo, conjuntoBase):
             print("\nConjuntos de raizes:",SerRaizDe(conjuntoBase, conjuntoComparativo))
    
 
-Menu(textoArquivo2, textoArquivo)
+Menu(textoArquivo[1], textoArquivo[0])
 contador = 0
 while contador < 25:
     resposta = input("\n\nDeseja fazer uma nova operação? (S/N) ")
     if resposta.lower() == "s":
-        Menu(textoArquivo2,textoArquivo)
+        Menu(textoArquivo[1],textoArquivo[0])
         contador += 1
     else:
         input("\n\nPressione enter para finalizar.\n\n")
