@@ -6,10 +6,10 @@ def PegaTresConjuntos(sistema,textoArquivo):
         Operacoes.PerguntaWindows(textoArquivo)
 
         print("\n\nConjunto C:")
-        directory3 = input("Digite seu repositorio: ")
-        nomeArquivo3 = input("Digite o nome do arquivo: ")
+        directory3 ="D:\\Projetos\\MatematicaDiscreta" #input("Digite seu repositorio: ")
+        nomeArquivo3 = "texto2" #input("Digite o nome do arquivo: ")
         nomeArquivo3 = nomeArquivo3+".txt"
-        directory3 = directory3+"/"+nomeArquivo3
+        directory3 = directory3+"\\"+nomeArquivo3
         arquivo3 = open(directory3)
         textoArquivo[2] = arquivo3.read()
 
@@ -75,7 +75,7 @@ def MaiorQue(conjuntoComparativo1, conjuntoComparativo2,conjuntoBase,indicadorBa
     return conjuntoMaiorQue
 
 def MenorQue(conjuntoComparativo1, conjuntoComparativo2,conjuntoBase):
-    conjuntoAuxBase = Operacoes.MaiorQue(conjuntoComparativo1, conjuntoBase)
+    conjuntoAuxBase = Operacoes.MenorQue(conjuntoComparativo1, conjuntoBase)
     conjuntoAuxComparativo = PreparaComparativo(conjuntoComparativo2)
     
     conjuntoPrimeiroElementoBase = []
@@ -83,13 +83,12 @@ def MenorQue(conjuntoComparativo1, conjuntoComparativo2,conjuntoBase):
 
     PreparaTerceiroConjunto(conjuntoAuxBase, conjuntoPrimeiroElementoBase, conjuntoSegundoElementoBase)
 
-
     conjuntoMenorQue = []
     i = 0
-    while i < conjuntoAuxBase.__len__():
+    while i < conjuntoSegundoElementoBase.__len__():
         j = 0
         while j < conjuntoAuxComparativo.__len__():
-            if float(conjuntoAuxBase[i]) < float(conjuntoAuxComparativo[j]):
+            if float(conjuntoSegundoElementoBase[i]) < float(conjuntoAuxComparativo[j]):
                 conjuntoMenorQue.append(Operacoes.ProdutoCartesiano(conjuntoAuxComparativo[j], conjuntoPrimeiroElementoBase[i]))
                 j += 1
             else:
@@ -99,21 +98,21 @@ def MenorQue(conjuntoComparativo1, conjuntoComparativo2,conjuntoBase):
 
 
 def IgualA(conjuntoComparativo1, conjuntoComparativo2, conjuntoBase):
-    conjuntoAuxBase = str(PercorreConjunto(conjuntoBase))
-    conjuntoAuxBase = formataConjunto(conjuntoAuxBase)
-    conjuntoAuxBase = conjuntoAuxBase.split(",")
+    conjuntoAuxBase = Operacoes.IgualA(conjuntoComparativo1, conjuntoBase)
+    conjuntoAuxComparativo = PreparaComparativo(conjuntoComparativo2)
+    
+    conjuntoPrimeiroElementoBase = []
+    conjuntoSegundoElementoBase = []
 
-    conjuntoAuxComparativo = str(PercorreConjunto(conjuntoComparativo))
-    conjuntoAuxComparativo = formataConjunto(conjuntoAuxComparativo)
-    conjuntoAuxComparativo = conjuntoAuxComparativo.split(",")
+    PreparaTerceiroConjunto(conjuntoAuxBase, conjuntoPrimeiroElementoBase, conjuntoSegundoElementoBase)
 
     conjuntoIgualA = []
     i = 0
-    while i < conjuntoAuxBase.__len__():
+    while i < conjuntoSegundoElementoBase.__len__():
         j = 0
         while j < conjuntoAuxComparativo.__len__():
-            if conjuntoAuxBase[i] == conjuntoAuxComparativo[j]:
-                conjuntoIgualA.append(ProdutoCartesiano(conjuntoAuxComparativo[j], conjuntoAuxBase[i]))
+            if float(conjuntoSegundoElementoBase[i]) < float(conjuntoAuxComparativo[j]):
+                conjuntoIgualA.append(Operacoes.ProdutoCartesiano(conjuntoAuxComparativo[j], conjuntoPrimeiroElementoBase[i]))
                 j += 1
             else:
                 j += 1
@@ -121,21 +120,21 @@ def IgualA(conjuntoComparativo1, conjuntoComparativo2, conjuntoBase):
     return conjuntoIgualA
 
 def SerQuadradoDe(conjuntoComparativo1, conjuntoComparativo2, conjuntoBase):
-    conjuntoAuxBase = str(PercorreConjunto(conjuntoBase))
-    conjuntoAuxBase = formataConjunto(conjuntoAuxBase)
-    conjuntoAuxBase = conjuntoAuxBase.split(",")
+    conjuntoAuxBase = Operacoes.SerQuadradoDe(conjuntoComparativo1, conjuntoBase)
+    conjuntoAuxComparativo = PreparaComparativo(conjuntoComparativo2)
+    
+    conjuntoPrimeiroElementoBase = []
+    conjuntoSegundoElementoBase = []
 
-    conjuntoAuxComparativo = str(PercorreConjunto(conjuntoComparativo))
-    conjuntoAuxComparativo = formataConjunto(conjuntoAuxComparativo)
-    conjuntoAuxComparativo = conjuntoAuxComparativo.split(",")
+    PreparaTerceiroConjunto(conjuntoAuxBase, conjuntoPrimeiroElementoBase, conjuntoSegundoElementoBase)
 
     conjuntoSerQuadradoDe = []
     i = 0
-    while i < conjuntoAuxBase.__len__():
+    while i < conjuntoSegundoElementoBase.__len__():
         j = 0
         while j < conjuntoAuxComparativo.__len__():
-            if int(conjuntoAuxBase[i]) == int(conjuntoAuxComparativo[j])*int(conjuntoAuxComparativo[j]):
-                conjuntoSerQuadradoDe.append(ProdutoCartesiano(conjuntoAuxComparativo[j], conjuntoAuxBase[i]))
+            if int(conjuntoSegundoElementoBase[i]) == int(conjuntoAuxComparativo[j])*int(conjuntoAuxComparativo[j]):
+                conjuntoSerQuadradoDe.append(Operacoes.ProdutoCartesiano(conjuntoAuxComparativo[j], conjuntoSegundoElementoBase[i]))
                 j += 1
             else:
                 j += 1
@@ -143,23 +142,24 @@ def SerQuadradoDe(conjuntoComparativo1, conjuntoComparativo2, conjuntoBase):
     return conjuntoSerQuadradoDe
 
 def SerRaizDe(conjuntoComparativo1, conjuntoComparativo2, conjuntoBase):
-    conjuntoAuxBase = str(PercorreConjunto(conjuntoBase))
-    conjuntoAuxBase = formataConjunto(conjuntoAuxBase)
-    conjuntoAuxBase = conjuntoAuxBase.split(",")
+    conjuntoAuxBase = Operacoes.SerRaizDe(conjuntoComparativo1, conjuntoBase)
+    conjuntoAuxComparativo = PreparaComparativo(conjuntoComparativo2)
+    
+    conjuntoPrimeiroElementoBase = []
+    conjuntoSegundoElementoBase = []
 
-    conjuntoAuxComparativo = str(PercorreConjunto(conjuntoComparativo))
-    conjuntoAuxComparativo = formataConjunto(conjuntoAuxComparativo)
-    conjuntoAuxComparativo = conjuntoAuxComparativo.split(",")
+    PreparaTerceiroConjunto(conjuntoAuxBase, conjuntoPrimeiroElementoBase, conjuntoSegundoElementoBase)
+
 
     conjuntoSerRaizDe = []
     i = 0
-    while i < conjuntoAuxBase.__len__():
+    while i < conjuntoSegundoElementoBase.__len__():
         j = 0
         while j < conjuntoAuxComparativo.__len__():
-            if conjuntoAuxBase[i].__contains__("-") or conjuntoAuxComparativo[j].__contains__("-"):
+            if conjuntoSegundoElementoBase[i].__contains__("-") or conjuntoAuxComparativo[j].__contains__("-"):
                 j += 1
-            elif float(conjuntoAuxBase[i]) == float(float(conjuntoAuxComparativo[j])**0.5):
-                conjuntoSerRaizDe.append(ProdutoCartesiano(conjuntoAuxComparativo[j], conjuntoAuxBase[i]))
+            elif float(conjuntoSegundoElementoBase[i]) == float(float(conjuntoAuxComparativo[j])**0.5):
+                conjuntoSerRaizDe.append(Operacoes.ProdutoCartesiano(conjuntoAuxComparativo[j], conjuntoAuxBase[i]))
                 j +=1
             else:
                 j += 1

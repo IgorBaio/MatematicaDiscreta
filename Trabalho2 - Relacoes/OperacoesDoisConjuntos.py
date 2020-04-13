@@ -1,8 +1,8 @@
 def PerguntaWindows(textoArquivo):
     print("\n\nConjunto A:")
-    directory = input("Digite seu repositorio: ")
+    directory = "D:\\Projetos\\MatematicaDiscreta"#input("Digite seu repositorio: ")
     directory = directory.replace("\\","\\\\" )
-    nomeArquivo = input("Digite o nome do arquivo: ")
+    nomeArquivo ="texto1" #input("Digite o nome do arquivo: ")
     nomeArquivo = nomeArquivo+".txt"
     directory = directory+"\\"+nomeArquivo
     arquivo = open(directory)
@@ -10,9 +10,9 @@ def PerguntaWindows(textoArquivo):
 
 
     print("\n\nConjunto B:")
-    directory2 = input("Digite seu repositorio: ")
+    directory2 = "D:\\Projetos\\MatematicaDiscreta"#input("Digite seu repositorio: ")
     directory2 = directory2.replace("\\","\\\\" )
-    nomeArquivo2 = input("Digite o nome do arquivo: ")
+    nomeArquivo2 = "texto3" #input("Digite o nome do arquivo: ")
     nomeArquivo2 = nomeArquivo2+".txt"
     directory2 = directory2+"\\"+nomeArquivo2
     arquivo2 = open(directory2)

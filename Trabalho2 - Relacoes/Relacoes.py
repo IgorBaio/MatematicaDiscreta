@@ -19,7 +19,7 @@ def PerguntaNovaOperacao(menu):
             input("\n\nPressione enter para finalizar.\n\n")
             break
 
-sistema = "l" #input("Usuario, voce utiliza Linux ou Windows?(L / W) ")
+sistema = "w" #input("Usuario, voce utiliza Linux ou Windows?(L / W) ")
 
 quantConjuntos = "3"#input("Deseja utilizar quantos conjuntos?(2 / 3) ")
 
@@ -52,5 +52,5 @@ else:
     
 
 ##
-# Colocar os demais conjuntos como o MaiorQue e verificar os valores
+# Demais metodos ja estao com a logica atualizada, porem falta testa-los ainda
 # #
