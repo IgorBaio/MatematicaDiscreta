@@ -7,7 +7,7 @@ def PegaTresConjuntos(sistema,textoArquivo):
 
         print("\n\nConjunto C:")
         directory3 ="D:\\Projetos\\MatematicaDiscreta" #input("Digite seu repositorio: ")
-        nomeArquivo3 = "texto2" #input("Digite o nome do arquivo: ")
+        nomeArquivo3 = "texto6" #input("Digite o nome do arquivo: ")
         nomeArquivo3 = nomeArquivo3+".txt"
         directory3 = directory3+"\\"+nomeArquivo3
         arquivo3 = open(directory3)
@@ -18,7 +18,7 @@ def PegaTresConjuntos(sistema,textoArquivo):
         
         print("\n\nConjunto C:")
         directory3 = "/home/igorbaio/Documentos/MatematicaDiscreta/" #input("Digite seu repositorio: ")
-        nomeArquivo3 = "texto2"#input("Digite o nome do arquivo: ")
+        nomeArquivo3 = "texto6"#input("Digite o nome do arquivo: ")
         nomeArquivo3 = nomeArquivo3+".txt"
         directory3 = directory3+"/"+nomeArquivo3
         arquivo3 = open(directory3)
@@ -111,7 +111,7 @@ def IgualA(conjuntoComparativo1, conjuntoComparativo2, conjuntoBase):
     while i < conjuntoSegundoElementoBase.__len__():
         j = 0
         while j < conjuntoAuxComparativo.__len__():
-            if float(conjuntoSegundoElementoBase[i]) < float(conjuntoAuxComparativo[j]):
+            if float(conjuntoSegundoElementoBase[i]) == float(conjuntoAuxComparativo[j]):
                 conjuntoIgualA.append(Operacoes.ProdutoCartesiano(conjuntoAuxComparativo[j], conjuntoPrimeiroElementoBase[i]))
                 j += 1
             else:
@@ -134,7 +134,7 @@ def SerQuadradoDe(conjuntoComparativo1, conjuntoComparativo2, conjuntoBase):
         j = 0
         while j < conjuntoAuxComparativo.__len__():
             if int(conjuntoSegundoElementoBase[i]) == int(conjuntoAuxComparativo[j])*int(conjuntoAuxComparativo[j]):
-                conjuntoSerQuadradoDe.append(Operacoes.ProdutoCartesiano(conjuntoAuxComparativo[j], conjuntoSegundoElementoBase[i]))
+                conjuntoSerQuadradoDe.append(Operacoes.ProdutoCartesiano(conjuntoAuxComparativo[j], conjuntoPrimeiroElementoBase[i]))
                 j += 1
             else:
                 j += 1
@@ -156,10 +156,10 @@ def SerRaizDe(conjuntoComparativo1, conjuntoComparativo2, conjuntoBase):
     while i < conjuntoSegundoElementoBase.__len__():
         j = 0
         while j < conjuntoAuxComparativo.__len__():
-            if conjuntoSegundoElementoBase[i].__contains__("-") or conjuntoAuxComparativo[j].__contains__("-"):
+            if conjuntoAuxComparativo[j].__contains__("-"):
                 j += 1
-            elif float(conjuntoSegundoElementoBase[i]) == float(float(conjuntoAuxComparativo[j])**0.5):
-                conjuntoSerRaizDe.append(Operacoes.ProdutoCartesiano(conjuntoAuxComparativo[j], conjuntoAuxBase[i]))
+            elif float(conjuntoSegundoElementoBase[i]) == float(float(conjuntoAuxComparativo[j])**0.5) or float(conjuntoSegundoElementoBase[i]) == -float(float(conjuntoAuxComparativo[j])**0.5):
+                conjuntoSerRaizDe.append(Operacoes.ProdutoCartesiano(conjuntoAuxComparativo[j], conjuntoPrimeiroElementoBase[i]))
                 j +=1
             else:
                 j += 1
@@ -193,51 +193,131 @@ def Menu(conjuntoComparativo1, conjuntoComparativo2 , conjuntoBase):
         print("************************************")
         opcao = input("1 - A > C:\n2 - C > A: ")
         if opcao == "1":
-            print("\n\nConjunto A",Operacoes.PercorreConjunto(conjuntoBase),"é Dominio e apresenta relacao Total.")
+            print("\n\nDe A > B")
+            print("\nConjunto A",Operacoes.PercorreConjunto(conjuntoBase),"é Dominio e apresenta relacao Total.")
             print("\nConjunto B",Operacoes.PercorreConjunto(conjuntoComparativo1),"é Imagem e apresenta relacao Sobrejetora.")
+            print("\n\nDe B > C")
+            print("\nConjunto B",Operacoes.PercorreConjunto(conjuntoComparativo1),"é Dominio e apresenta relacao Total.")
+            print("\nConjunto C",Operacoes.PercorreConjunto(conjuntoComparativo2),"é Imagem e apresenta relacao Sobrejetora.")
+            print("\n\nDe A > C")
+            print("\nConjunto A",Operacoes.PercorreConjunto(conjuntoBase),"é Dominio e apresenta relacao Total.")
+            print("\nConjunto C",Operacoes.PercorreConjunto(conjuntoComparativo2),"é Imagem e apresenta relacao Sobrejetora.")
+
             print("\nMaior que:",MaiorQue(conjuntoComparativo1, conjuntoComparativo2, conjuntoBase,"A"))
         if opcao == "2":
-            print("\n\nConjunto B",Operacoes.PercorreConjunto(conjuntoBase),"é Dominio e apresenta relacao Total.")
-            print("\nConjunto A",Operacoes.PercorreConjunto(conjuntoComparativo1),"é Imagem e apresenta relacao Sobrejetora.")
+            print("\n\nDe C > B")
+            print("\nConjunto C",Operacoes.PercorreConjunto(conjuntoComparativo2),"é Dominio e apresenta relacao Total.")
+            print("\nConjunto B",Operacoes.PercorreConjunto(conjuntoComparativo1),"é Imagem e apresenta relacao Sobrejetora.")
+            print("\n\nDe B > A")
+            print("\nConjunto B",Operacoes.PercorreConjunto(conjuntoComparativo1),"é Dominio e apresenta relacao Total.")
+            print("\nConjunto A",Operacoes.PercorreConjunto(conjuntoBase),"é Imagem e apresenta relacao Sobrejetora.")
+            print("\n\nDe C > A")
+            print("\nConjunto C",Operacoes.PercorreConjunto(conjuntoComparativo2),"é Dominio e apresenta relacao Total.")
+            print("\nConjunto A",Operacoes.PercorreConjunto(conjuntoBase),"é Imagem e apresenta relacao Sobrejetora.")
+
             print("\nMaior que:",MaiorQue(conjuntoComparativo1, conjuntoBase, conjuntoComparativo2,"C"))
     elif valorMenu == 2:
-        opcao = input("1 - A < B:\n2 - B < A: ")
+        opcao = input("1 - A < C:\n2 - C < A: ")
         if opcao == "1":
-            print("\n\nConjunto A",Operacoes.PercorreConjunto(conjuntoBase),"é Dominio e apresenta relacao Total.")
+            print("\n\nDe A < B")
+            print("\nConjunto A",Operacoes.PercorreConjunto(conjuntoBase),"é Dominio e apresenta relacao Total.")
             print("\nConjunto B",Operacoes.PercorreConjunto(conjuntoComparativo1),"é Imagem e apresenta relacao Sobrejetora.")
+            print("\n\nDe B < C")
+            print("\nConjunto B",Operacoes.PercorreConjunto(conjuntoComparativo1),"é Dominio e apresenta relacao Total.")
+            print("\nConjunto C",Operacoes.PercorreConjunto(conjuntoComparativo2),"é Imagem e apresenta relacao Sobrejetora.")
+            print("\n\nDe A < C")
+            print("\nConjunto A",Operacoes.PercorreConjunto(conjuntoBase),"é Dominio e apresenta relacao Total.")
+            print("\nConjunto C",Operacoes.PercorreConjunto(conjuntoComparativo2),"é Imagem e apresenta relacao Sobrejetora.")
+
             print("\nMenor que:",MenorQue(conjuntoComparativo1, conjuntoComparativo2, conjuntoBase))
         if opcao == "2":
-            print("\n\nConjunto B",Operacoes.PercorreConjunto(conjuntoBase),"é Dominio e apresenta relacao Total.")
-            print("\nConjunto A",Operacoes.PercorreConjunto(conjuntoComparativo1),"é Imagem e apresenta relacao Sobrejetora.")
+            print("\n\nDe C < B")
+            print("\nConjunto C",Operacoes.PercorreConjunto(conjuntoComparativo2),"é Dominio e apresenta relacao Total.")
+            print("\nConjunto B",Operacoes.PercorreConjunto(conjuntoComparativo1),"é Imagem e apresenta relacao Sobrejetora.")
+            print("\n\nDe B < A")
+            print("\nConjunto B",Operacoes.PercorreConjunto(conjuntoComparativo1),"é Dominio e apresenta relacao Total.")
+            print("\nConjunto A",Operacoes.PercorreConjunto(conjuntoBase),"é Imagem e apresenta relacao Sobrejetora.")
+            print("\n\nDe C < A")
+            print("\nConjunto C",Operacoes.PercorreConjunto(conjuntoComparativo2),"é Dominio e apresenta relacao Total.")
+            print("\nConjunto A",Operacoes.PercorreConjunto(conjuntoBase),"é Imagem e apresenta relacao Sobrejetora.")
+
             print("\nMenor que:",MenorQue(conjuntoComparativo1, conjuntoBase, conjuntoComparativo2))
     elif valorMenu == 3:
         opcao = input("1 - A = B:\n2 - B = A: ")
         if opcao == "1":
-            print("\n\nConjunto A",Operacoes.PercorreConjunto(conjuntoBase),"é Dominio e apresenta relacao Total.")
+            print("\n\nDe A = B")
+            print("\nConjunto A",Operacoes.PercorreConjunto(conjuntoBase),"é Dominio e apresenta relacao Total.")
             print("\nConjunto B",Operacoes.PercorreConjunto(conjuntoComparativo1),"é Imagem e apresenta relacao Sobrejetora.")
+            print("\n\nDe B = C")
+            print("\nConjunto B",Operacoes.PercorreConjunto(conjuntoComparativo1),"é Dominio e apresenta relacao Total.")
+            print("\nConjunto C",Operacoes.PercorreConjunto(conjuntoComparativo2),"é Imagem e apresenta relacao Sobrejetora.")
+            print("\n\nDe A = C")
+            print("\nConjunto A",Operacoes.PercorreConjunto(conjuntoBase),"é Dominio e apresenta relacao Total.")
+            print("\nConjunto C",Operacoes.PercorreConjunto(conjuntoComparativo2),"é Imagem e apresenta relacao Sobrejetora.")
+
             print("\nIgual a:",IgualA(conjuntoComparativo1, conjuntoComparativo2, conjuntoBase))
         if opcao == "2":
-            print("\n\nConjunto B",Operacoes.PercorreConjunto(conjuntoBase),"é Dominio e apresenta relacao Total.")
-            print("\nConjunto A",Operacoes.PercorreConjunto(conjuntoComparativo1),"é Imagem e apresenta relacao Sobrejetora.")
+            print("\n\nDe C = B")
+            print("\nConjunto C",Operacoes.PercorreConjunto(conjuntoComparativo2),"é Dominio e apresenta relacao Total.")
+            print("\nConjunto B",Operacoes.PercorreConjunto(conjuntoComparativo1),"é Imagem e apresenta relacao Sobrejetora.")
+            print("\n\nDe B = A")
+            print("\nConjunto B",Operacoes.PercorreConjunto(conjuntoComparativo1),"é Dominio e apresenta relacao Total.")
+            print("\nConjunto A",Operacoes.PercorreConjunto(conjuntoBase),"é Imagem e apresenta relacao Sobrejetora.")
+            print("\n\nDe C = A")
+            print("\nConjunto C",Operacoes.PercorreConjunto(conjuntoComparativo2),"é Dominio e apresenta relacao Total.")
+            print("\nConjunto A",Operacoes.PercorreConjunto(conjuntoBase),"é Imagem e apresenta relacao Sobrejetora.")
+
             print("\nIgual a:",IgualA(conjuntoComparativo1, conjuntoBase, conjuntoComparativo2))
     elif valorMenu == 4:
         opcao = input("1 - A ser quadrado de B:\n2 - B ser quadrado de A: ")
         if opcao == "1":
-            print("\n\nConjunto A",Operacoes.PercorreConjunto(conjuntoBase),"é Dominio e apresenta relacao Funcional.")
+            print("\n\nDe A ser quadrado de B")
+            print("\nConjunto A",Operacoes.PercorreConjunto(conjuntoBase),"é Dominio e apresenta relacao Funcional.")
             print("\nConjunto B",Operacoes.PercorreConjunto(conjuntoComparativo1),"é Imagem e apresenta relacao Injetora.")
+            print("\n\nDe B ser quadrado de C")
+            print("\nConjunto B",Operacoes.PercorreConjunto(conjuntoComparativo1),"é Dominio e apresenta relacao Funcional.")
+            print("\nConjunto C",Operacoes.PercorreConjunto(conjuntoComparativo2),"é Imagem e apresenta relacao Injetora.")
+            print("\n\nDe A ser quadrado de C")
+            print("\nConjunto A",Operacoes.PercorreConjunto(conjuntoBase),"é Dominio e apresenta relacao Funcional.")
+            print("\nConjunto C",Operacoes.PercorreConjunto(conjuntoComparativo2),"é Imagem e apresenta relacao Injetora.")
+
             print("\nConjuntos de quadrados:",SerQuadradoDe(conjuntoComparativo1, conjuntoComparativo2, conjuntoBase))
         if opcao == "2":
-            print("\n\nConjunto B",Operacoes.PercorreConjunto(conjuntoBase),"é Dominio e apresenta relacao Funcional.")
-            print("\nConjunto A",Operacoes.PercorreConjunto(conjuntoComparativo1),"é Imagem e apresenta relacao Injetora.")
+            print("\n\nDe C ser quadrado de B")
+            print("\nConjunto C",Operacoes.PercorreConjunto(conjuntoComparativo2),"é Dominio e apresenta relacao Funcional.")
+            print("\nConjunto B",Operacoes.PercorreConjunto(conjuntoComparativo1),"é Imagem e apresenta relacao Injetora.")
+            print("\n\nDe B ser quadrado de A")
+            print("\nConjunto B",Operacoes.PercorreConjunto(conjuntoComparativo1),"é Dominio e apresenta relacao Funcional.")
+            print("\nConjunto C",Operacoes.PercorreConjunto(conjuntoBase),"é Imagem e apresenta relacao Injetora.")
+            print("\n\nDe C ser quadrado de A")
+            print("\nConjunto C",Operacoes.PercorreConjunto(conjuntoComparativo2),"é Dominio e apresenta relacao Funcional.")
+            print("\nConjunto A",Operacoes.PercorreConjunto(conjuntoBase),"é Imagem e apresenta relacao Injetora.")
+
             print("\nConjuntos de quadrados:",SerQuadradoDe(conjuntoComparativo1, conjuntoBase, conjuntoComparativo2))
     elif valorMenu == 5:
         opcao = input("1 - A ser raiz de B:\n2 - B ser raiz de A: ")
         if opcao == "1":
-            print("\n\nConjunto A",Operacoes.PercorreConjunto(conjuntoBase),"é Dominio e apresenta relacao Funcional.")
+            print("\n\nDe A ser raiz de B")
+            print("\nConjunto A",Operacoes.PercorreConjunto(conjuntoBase),"é Dominio e apresenta relacao Funcional.")
             print("\nConjunto B",Operacoes.PercorreConjunto(conjuntoComparativo1),"é Imagem e apresenta relacao Injetora.")
+            print("\n\nDe B ser raiz de C")
+            print("\nConjunto B",Operacoes.PercorreConjunto(conjuntoComparativo1),"é Dominio e apresenta relacao Funcional.")
+            print("\nConjunto C",Operacoes.PercorreConjunto(conjuntoComparativo2),"é Imagem e apresenta relacao Injetora.")
+            print("\n\nDe A ser raiz de C")
+            print("\nConjunto A",Operacoes.PercorreConjunto(conjuntoBase),"é Dominio e apresenta relacao Funcional.")
+            print("\nConjunto C",Operacoes.PercorreConjunto(conjuntoComparativo2),"é Imagem e apresenta relacao Injetora.")
+
             print("\nConjuntos de raizes:",SerRaizDe(conjuntoComparativo1, conjuntoComparativo2, conjuntoBase))
         if opcao == "2":
-            print("\n\nConjunto B",Operacoes.PercorreConjunto(conjuntoBase),"é Dominio e apresenta relacao Funcional.")
-            print("\nConjunto A",Operacoes.PercorreConjunto(conjuntoComparativo1),"é Imagem e apresenta relacao Injetora.")
+            print("\n\nDe C ser raiz de B")
+            print("\nConjunto C",Operacoes.PercorreConjunto(conjuntoComparativo2),"é Dominio e apresenta relacao Funcional.")
+            print("\nConjunto B",Operacoes.PercorreConjunto(conjuntoComparativo1),"é Imagem e apresenta relacao Injetora.")
+            print("\n\nDe B ser raiz de A")
+            print("\nConjunto B",Operacoes.PercorreConjunto(conjuntoComparativo1),"é Dominio e apresenta relacao Funcional.")
+            print("\nConjunto C",Operacoes.PercorreConjunto(conjuntoBase),"é Imagem e apresenta relacao Injetora.")
+            print("\n\nDe C ser raiz de A")
+            print("\nConjunto C",Operacoes.PercorreConjunto(conjuntoComparativo2),"é Dominio e apresenta relacao Funcional.")
+            print("\nConjunto A",Operacoes.PercorreConjunto(conjuntoBase),"é Imagem e apresenta relacao Injetora.")
+
             print("\nConjuntos de raizes:",SerRaizDe(conjuntoComparativo1, conjuntoBase, conjuntoComparativo2))
   

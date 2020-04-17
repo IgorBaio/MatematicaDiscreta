@@ -2,7 +2,7 @@ def PerguntaWindows(textoArquivo):
     print("\n\nConjunto A:")
     directory = "D:\\Projetos\\MatematicaDiscreta"#input("Digite seu repositorio: ")
     directory = directory.replace("\\","\\\\" )
-    nomeArquivo ="texto1" #input("Digite o nome do arquivo: ")
+    nomeArquivo ="texto4" #input("Digite o nome do arquivo: ")
     nomeArquivo = nomeArquivo+".txt"
     directory = directory+"\\"+nomeArquivo
     arquivo = open(directory)
@@ -12,7 +12,7 @@ def PerguntaWindows(textoArquivo):
     print("\n\nConjunto B:")
     directory2 = "D:\\Projetos\\MatematicaDiscreta"#input("Digite seu repositorio: ")
     directory2 = directory2.replace("\\","\\\\" )
-    nomeArquivo2 = "texto3" #input("Digite o nome do arquivo: ")
+    nomeArquivo2 = "texto5" #input("Digite o nome do arquivo: ")
     nomeArquivo2 = nomeArquivo2+".txt"
     directory2 = directory2+"\\"+nomeArquivo2
     arquivo2 = open(directory2)
@@ -21,7 +21,7 @@ def PerguntaWindows(textoArquivo):
 def PerguntaLinux(textoArquivo):
         print("\n\nConjunto A:")
         directory = "/home/igorbaio/Documentos/MatematicaDiscreta/" #input("Digite seu repositorio: ")
-        nomeArquivo ="texto1" #input("Digite o nome do arquivo: ")
+        nomeArquivo ="texto4" #input("Digite o nome do arquivo: ")
         nomeArquivo = nomeArquivo+".txt"
         directory = directory+"/"+nomeArquivo
         arquivo = open(directory)
@@ -29,7 +29,7 @@ def PerguntaLinux(textoArquivo):
         
         print("\n\nConjunto B:")
         directory2 = "/home/igorbaio/Documentos/MatematicaDiscreta/" #input("Digite seu repositorio: ")
-        nomeArquivo2 ="texto3" #input("Digite o nome do arquivo: ")
+        nomeArquivo2 ="texto5" #input("Digite o nome do arquivo: ")
         nomeArquivo2 = nomeArquivo2+".txt"
         directory2 = directory2+"/"+nomeArquivo2
         arquivo2 = open(directory2)
@@ -266,9 +266,9 @@ def SerRaizDe(conjuntoComparativo,conjuntoBase):
     while i < conjuntoAuxBase.__len__():
         j = 0
         while j < conjuntoAuxComparativo.__len__():
-            if conjuntoAuxBase[i].__contains__("-") or conjuntoAuxComparativo[j].__contains__("-"):
+            if conjuntoAuxComparativo[j].__contains__("-"):
                 j += 1
-            elif float(conjuntoAuxBase[i]) == float(float(conjuntoAuxComparativo[j])**0.5):
+            elif float(conjuntoAuxBase[i]) == float(float(conjuntoAuxComparativo[j])**0.5) or float(conjuntoAuxBase[i]) == -float(float(conjuntoAuxComparativo[j])**0.5): 
                 conjuntoSerRaizDe.append(ProdutoCartesiano(conjuntoAuxComparativo[j], conjuntoAuxBase[i]))
                 j +=1
             else:
