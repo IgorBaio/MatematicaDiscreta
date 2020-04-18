@@ -58,16 +58,15 @@ def MaiorQue(conjuntoComparativo1, conjuntoComparativo2,conjuntoBase,indicadorBa
 
     PreparaTerceiroConjunto(conjuntoAuxBase, conjuntoPrimeiroElementoBase, conjuntoSegundoElementoBase)
 
-
-    
-
     conjuntoMaiorQue = []
     i = 0
     while i < conjuntoSegundoElementoBase.__len__():
         j = 0
         while j < conjuntoAuxComparativo.__len__():
             if float(conjuntoSegundoElementoBase[i]) > float(conjuntoAuxComparativo[j]):
-                conjuntoMaiorQue.append(Operacoes.ProdutoCartesiano(conjuntoAuxComparativo[j], conjuntoPrimeiroElementoBase[i]))
+                produtoCartesiano = Operacoes.ProdutoCartesiano(conjuntoAuxComparativo[j], conjuntoPrimeiroElementoBase[i])
+                if not (conjuntoMaiorQue.__len__() > 0 and conjuntoMaiorQue.__contains__(produtoCartesiano)):
+                    conjuntoMaiorQue.append(produtoCartesiano)
                 j += 1
             else:
                 j += 1
@@ -89,7 +88,9 @@ def MenorQue(conjuntoComparativo1, conjuntoComparativo2,conjuntoBase):
         j = 0
         while j < conjuntoAuxComparativo.__len__():
             if float(conjuntoSegundoElementoBase[i]) < float(conjuntoAuxComparativo[j]):
-                conjuntoMenorQue.append(Operacoes.ProdutoCartesiano(conjuntoAuxComparativo[j], conjuntoPrimeiroElementoBase[i]))
+                produtoCartesiano = Operacoes.ProdutoCartesiano(conjuntoAuxComparativo[j], conjuntoPrimeiroElementoBase[i])
+                if not (conjuntoMenorQue.__len__() > 0 and conjuntoMenorQue.__contains__(produtoCartesiano)):
+                    conjuntoMenorQue.append(produtoCartesiano)
                 j += 1
             else:
                 j += 1

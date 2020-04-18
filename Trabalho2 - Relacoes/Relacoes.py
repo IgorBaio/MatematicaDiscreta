@@ -52,6 +52,6 @@ else:
     
 
 ##
-# Foi atualizado, testado, porem so de um lado, 
+# Foi atualizado, testado, porem so de um lado e evitei de que algum elemento se repita, 
 # fazer uma verificacao com maior qualidade
 # #
