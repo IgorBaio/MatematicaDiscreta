@@ -90,12 +90,15 @@ def PercorreConjunto(conjunto):
             onlyNumbers = "" 
             i+=1
         else:
+            a = item.__len__()
             while j < item.__len__():
                 character = item[j]
                 if str.isdigit(character):
                     onlyNumbers += character
-                    conjuntoAux.append(onlyNumbers)
-                    onlyNumbers = "" 
+                    #Aqui, ele so pegava o primeiro numero após o sinal de "-"
+                    if j == (item.__len__() - 1):
+                        conjuntoAux.append(onlyNumbers)
+                        onlyNumbers = "" 
                     j+=1
                 elif character == "-":
                     onlyNumbers = character

@@ -1,8 +1,8 @@
 def PerguntaWindows(textoArquivo):
     print("\n\nConjunto A:")
-    directory = "D:\\Projetos\\MatematicaDiscreta"#input("Digite seu repositorio: ")
+    directory = input("Digite seu repositorio: ")
     directory = directory.replace("\\","\\\\" )
-    nomeArquivo ="texto4" #input("Digite o nome do arquivo: ")
+    nomeArquivo = input("Digite o nome do arquivo: ")
     nomeArquivo = nomeArquivo+".txt"
     directory = directory+"\\"+nomeArquivo
     arquivo = open(directory)
@@ -10,9 +10,9 @@ def PerguntaWindows(textoArquivo):
 
 
     print("\n\nConjunto B:")
-    directory2 = "D:\\Projetos\\MatematicaDiscreta"#input("Digite seu repositorio: ")
+    directory2 = input("Digite seu repositorio: ")
     directory2 = directory2.replace("\\","\\\\" )
-    nomeArquivo2 = "texto5" #input("Digite o nome do arquivo: ")
+    nomeArquivo2 = input("Digite o nome do arquivo: ")
     nomeArquivo2 = nomeArquivo2+".txt"
     directory2 = directory2+"\\"+nomeArquivo2
     arquivo2 = open(directory2)
@@ -20,16 +20,16 @@ def PerguntaWindows(textoArquivo):
 
 def PerguntaLinux(textoArquivo):
         print("\n\nConjunto A:")
-        directory = "/home/igorbaio/Documentos/MatematicaDiscreta/" #input("Digite seu repositorio: ")
-        nomeArquivo ="texto4" #input("Digite o nome do arquivo: ")
+        directory = input("Digite seu repositorio: ")
+        nomeArquivo = input("Digite o nome do arquivo: ")
         nomeArquivo = nomeArquivo+".txt"
         directory = directory+"/"+nomeArquivo
         arquivo = open(directory)
         textoArquivo[0]= arquivo.read()
         
         print("\n\nConjunto B:")
-        directory2 = "/home/igorbaio/Documentos/MatematicaDiscreta/" #input("Digite seu repositorio: ")
-        nomeArquivo2 ="texto5" #input("Digite o nome do arquivo: ")
+        directory2 = input("Digite seu repositorio: ")
+        nomeArquivo2 = input("Digite o nome do arquivo: ")
         nomeArquivo2 = nomeArquivo2+".txt"
         directory2 = directory2+"/"+nomeArquivo2
         arquivo2 = open(directory2)
@@ -90,12 +90,14 @@ def PercorreConjunto(conjunto):
             onlyNumbers = "" 
             i+=1
         else:
+            a = item.__len__()
             while j < item.__len__():
                 character = item[j]
                 if str.isdigit(character):
                     onlyNumbers += character
-                    conjuntoAux.append(onlyNumbers)
-                    onlyNumbers = "" 
+                    if j == (item.__len__() - 1):
+                        conjuntoAux.append(onlyNumbers)
+                        onlyNumbers = "" 
                     j+=1
                 elif character == "-":
                     onlyNumbers = character

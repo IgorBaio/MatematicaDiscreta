@@ -6,8 +6,8 @@ def PegaTresConjuntos(sistema,textoArquivo):
         Operacoes.PerguntaWindows(textoArquivo)
 
         print("\n\nConjunto C:")
-        directory3 ="D:\\Projetos\\MatematicaDiscreta" #input("Digite seu repositorio: ")
-        nomeArquivo3 = "texto6" #input("Digite o nome do arquivo: ")
+        directory3 =input("Digite seu repositorio: ")
+        nomeArquivo3 = input("Digite o nome do arquivo: ")
         nomeArquivo3 = nomeArquivo3+".txt"
         directory3 = directory3+"\\"+nomeArquivo3
         arquivo3 = open(directory3)
@@ -17,8 +17,8 @@ def PegaTresConjuntos(sistema,textoArquivo):
         Operacoes.PerguntaLinux(textoArquivo)
         
         print("\n\nConjunto C:")
-        directory3 = "/home/igorbaio/Documentos/MatematicaDiscreta/" #input("Digite seu repositorio: ")
-        nomeArquivo3 = "texto6"#input("Digite o nome do arquivo: ")
+        directory3 = input("Digite seu repositorio: ")
+        nomeArquivo3 = input("Digite o nome do arquivo: ")
         nomeArquivo3 = nomeArquivo3+".txt"
         directory3 = directory3+"/"+nomeArquivo3
         arquivo3 = open(directory3)
